@@ -9,11 +9,9 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        int[] v = {1,2,3,4,6,10};
-        int target = 10;
+        int[] v = {3,3};
+        int target = 6;
         Solution s = new Solution();
-        System.out.println(Arrays.toString(s.twoSum(v, 4)));        
-        
-
+        System.out.println(Arrays.toString(s.twoSum(v, target)));        
     }
 }
