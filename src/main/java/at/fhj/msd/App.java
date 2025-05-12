@@ -1,7 +1,5 @@
 package at.fhj.msd;
 
-import java.lang.annotation.Target;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -12,15 +10,31 @@ public class App {
        
         Solution s = new Solution();
         LinkedList<Integer> i = new LinkedList<>();
-        i.addFirst(2);
-        i.addLast(4);
-        i.addLast(3);
-        LinkedList<Integer> c = new LinkedList<>();
-        c.add(5);
-        c.add(6);
-        c.add(4);
+        i.addFirst(9);
+        i.addFirst(9);
+        i.addFirst(9);
+        i.addFirst(9);
+        i.addFirst(9);
+        i.addFirst(9);
+        i.addFirst(9);
+        
+        
+      
+       
 
-        System.out.println(i);
+        LinkedList<Integer> c = new LinkedList<>();
+          c.addFirst(9);
+        c.addFirst(9);
+        c.addFirst(9);
+        c.addFirst(9);
+       
+        
+        
+        
+
+        
+         System.out.println(i);
+        System.out.println(c);
         System.out.println(s.addTwoNumber(i, c));
         
     }
