@@ -27,6 +27,10 @@ public class App {
         c.addFirst(9);
         c.addFirst(9);
         c.addFirst(9);
+
+        ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
+        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode (9, new ListNode(9))));
+        System.out.println(s.addTwoNumbers(l1, l2));
        
         
         

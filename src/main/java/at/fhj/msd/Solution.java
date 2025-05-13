@@ -1,5 +1,6 @@
 package at.fhj.msd;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -93,7 +94,49 @@ public class Solution {
             return solution;
       }
 
-       public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
-       }
+
+
+
+      public ListNode solved = new ListNode(0);
+      public ListNode head = solved;
+      public int carry = 0;
+      
+
+      
+      public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+            int sum = l1.val + l2.val + carry;
+            carry = sum/10;
+            if (carry >= 1) sum = sum % 10;
+            solved.next = new ListNode(sum);
+            solved = solved.next;
+
+            if (l1.next != null && l2.next != null)
+            {
+                  addTwoNumbers(l1.next, l2.next);
+            }
+            else if (l1.next != null && l2.next == null)
+            {
+                  addTwoNumbers(l1.next, new ListNode(0));
+            }
+            else if (l1.next == null && l2.next != null)
+            {
+                  addTwoNumbers(new ListNode(0), l2.next);
+            }
+            else if (carry > 0)
+            {
+                  solved.next = new ListNode(carry);
+                  solved = solved.next;
+            }
+            
+            return head.next;
+      }
+
+
+      public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        return 3.14;
+      }
+
+
+       
 }
