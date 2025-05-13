@@ -9,37 +9,38 @@ public class App {
     public static void main(String[] args) {
        
         Solution s = new Solution();
-        LinkedList<Integer> i = new LinkedList<>();
-        i.addFirst(9);
-        i.addFirst(9);
-        i.addFirst(9);
-        i.addFirst(9);
-        i.addFirst(9);
-        i.addFirst(9);
-        i.addFirst(9);
-        
-        
       
        
-
-        LinkedList<Integer> c = new LinkedList<>();
-          c.addFirst(9);
-        c.addFirst(9);
-        c.addFirst(9);
-        c.addFirst(9);
-
-        ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
-        ListNode l2 = new ListNode(9, new ListNode(9, new ListNode (9, new ListNode(9))));
-        System.out.println(s.addTwoNumbers(l1, l2));
-       
         
         
         
 
-        
-        System.out.println(i);
-        System.out.println(c);
-        System.out.println(s.addTwoNumber(i, c));
+      String numberStr = "472ddasd5dadsasa45asd ";
+      String[] parts = numberStr.split("");
+      if (numberStr.contains("@"))
+      {
+        System.out.println("WOww");
+      }
+
+      //how to cound integers/natural numbers in a String/String Array
+      int count = 0;
+        for (String part : parts) {
+            try {
+                int test = Integer.parseInt(part);
+                ++count;
+            }catch (NumberFormatException e) { //can also be any exception
+                
+            }
+        }
+      System.out.println(count);
+    
+
+      
+      
+
+      
+
+      
         
     }
 }
