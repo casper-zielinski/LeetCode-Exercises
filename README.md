@@ -302,3 +302,59 @@ solved = solved.next verschiebt den Zeiger.
 >solved.next = new ListNode(...) verändert die Struktur der Liste.
 
 >Wenn du später mit head.next arbeitest, ist deine Dummy-Node [0] hilfreich, um am Ende nur das echte Ergebnis ab head.next zurückzugeben.
+
+## Leetcode Exercise 1 with better Time Complexity O(n log n)
+
+> The Code:
+
+```java
+      private int pointer1;
+      private int pointer2; 
+      private int index1;
+      private int index2;
+      private int[] solution = new int[2];
+      
+      
+      public int[] twoSumEfficient(int[] nums, int target)
+      {
+      
+      int[] copy = nums;
+      List<Integer> list = Arrays.stream(copy).boxed().collect(Collectors.toList());
+      Arrays.sort(nums);
+      index1 = 0;
+      index2 = nums.length - 1;
+      int sum = list.get(index1) + list.get(1);
+      solution[0] = 0;
+      solution[1] = 1;
+        
+        if (sum != target)
+        {
+            
+            while (true)
+            {  
+                  pointer1 = nums[index1];
+                  pointer2 = nums[index2];
+                  sum = pointer1 + pointer2;
+                  if (sum > target)
+                  {
+                        --index2;
+                  }
+                  else if (sum < target)
+                  {
+                        ++index1;
+                  }
+                  if (sum == target)
+                  {
+                        solution[0]= list.indexOf(pointer1);
+                        solution[1] = list.lastIndexOf(pointer2);
+                        return solution;
+                        
+                  }
+            }
+        }
+        else return solution;
+      }
+
+```
+
+> It uses Pointers instead of iterating through the Array two Times (Which is the previous one with a time complexity of O(n²)). This Code transforms an Array into a List, with this List it is checked, which values are needed to be added to sum up the target, of these values the indexes are returned. This is made because the original array is being sorted, so the indexes would be wrong.

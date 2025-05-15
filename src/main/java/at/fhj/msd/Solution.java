@@ -49,58 +49,30 @@ public class Solution {
         
         if (sum != target)
         {
-            if (target >= 0)
-            {
-                  while (true)
-                  {  
-                        pointer1 = nums[index1];
-                        pointer2 = nums[index2];
-                        sum = pointer1 + pointer2;
-                        if (sum > target)
-                        {
-                              --index2;
-                        }
-                        else if (sum < target)
-                        {
-                              ++index1;
-                        }
-                        if (sum == target)
-                        {
-                              solution[0]= list.indexOf(pointer1);
-                              solution[1] = list.lastIndexOf(pointer2);
-                              return solution;
-                        
-                        }
+            
+            while (true)
+            {  
+                  pointer1 = nums[index1];
+                  pointer2 = nums[index2];
+                  sum = pointer1 + pointer2;
+                  if (sum > target)
+                  {
+                        --index2;
                   }
-            }
-            else
-            {
-                  while (true)
-                  {  
-                        pointer1 = nums[index1];
-                        pointer2 = nums[index2];
-                        sum = pointer1 + pointer2;
-                        if (sum > target)
-                        {
-                              --index2;
-                        }
+                  else if (sum < target)
+                  {
+                        ++index1;
+                  }
+                  if (sum == target)
+                  {
+                        solution[0]= list.indexOf(pointer1);
+                        solution[1] = list.lastIndexOf(pointer2);
+                        return solution;
                         
-                        else if (sum < target)
-                        {
-                              ++index1;
-                        }
-                        if (sum == target)
-                        {
-                              solution[0] = list.indexOf(pointer1);
-                              solution[1] = list.lastIndexOf(pointer2);
-                              return solution;
-                        
-                        }
                   }
             }
         }
         else return solution;
-            
       }
 
       public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Integer> l2)
@@ -252,8 +224,11 @@ public class Solution {
 
       public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
-            List<Integer> list = new ArrayList<>();
+            List<Integer> list1 = Arrays.stream(nums1).boxed().collect(Collectors.toList());
+            List<Integer> list2 = Arrays.stream(nums2).boxed().collect(Collectors.toList());
+
             return 3.14;
+
       
       }
 
