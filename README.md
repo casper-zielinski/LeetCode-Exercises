@@ -1,12 +1,12 @@
 # Leetcode exercises
 
-## Leetcode exercise 1
+## Leetcode exercise 1 (Dif: Easy)
 
 ![Leetcode Problem](resources/Leetcode-Problem1.png)
 > Two Sum [X]  
 > It returns two Values, those two Values are indexes of the Array that the method received. The indexes both show to values, and those values added are the target Integer, that is also given to the ``twoSum()`` method
 
-**The Code: (in Solution.java)**
+**The Code (in Solution.java) :**
 
 ```java
 public int[] twoSum(int[] nums, int target){
@@ -30,7 +30,7 @@ public int[] twoSum(int[] nums, int target){
 }
 ```
 
-**In App.java (for Example:)**
+**The Code (in App.java) :**
 
 ```java
 
@@ -42,10 +42,13 @@ System.out.println(Arrays.toString(s.twoSum(v, target)));
 
 ```
 
-## Leetcode Exercise 2
+## Leetcode Exercise 2 (Dif: Medium)
+
 ![Leetcode Problem 2](resources/Leetcode-Problem2.png)
 
 > I firstly did it wrong, because to use the Test Cases provided by Leetcode, you need to use the ``ListNode.java`` Class provided:
+
+**The Code (in ListNode.java) :**
 
 ```java
 public class ListNode {
@@ -57,9 +60,10 @@ public class ListNode {
 }
 ```
 
-> and I just used Linked List, which worked, the result came the same as in the test cases, but the test cases didn't work, so i made it again using the ``ListNode.java`` Class.
-
+> and I just used Linked List, which worked, the result came the same as in the test cases, but the test cases didn't work, so i made it again using the ``ListNode.java`` Class.  
 > This is the Method using Linked List:
+
+**The Code (in Solution.java) :**
 
 ```java
 public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Integer> l2)
@@ -133,6 +137,8 @@ public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Inte
       }
 ```
 
+**The Code (in Solution.java) :**
+
 ```java
 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
@@ -205,9 +211,10 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 ```
 
 > The most of the documentation is in the Code Comments already, it uses recursive Method calling
-> to get to the next Node and saving it's value without overriding previous ones.
-
+> to get to the next Node and saving it's value without overriding previous ones.  
 > In App.Java for Test:
+
+**The Code (in App.java) :**
 
 ```java
 ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
@@ -218,9 +225,7 @@ System.out.println(s.addTwoNumbers(l1, l2));
 //Just to debug (It wont print anything logical)
 ```
 
->Hier eine Erklärung wie der head und solved node funktioniert (weil ich damit am meisten Probleme hatte):
-
-
+>Hier eine Erklärung wie der head und solved node funktioniert (weil ich damit am meisten Probleme hatte):  
 >Du hast:
 
 ```java
@@ -297,15 +302,13 @@ while (head != null) {
 ```
 
 >Merksatz:  
-solved = solved.next verschiebt den Zeiger.
-
->solved.next = new ListNode(...) verändert die Struktur der Liste.
-
+solved = solved.next verschiebt den Zeiger.  
+>solved.next = new ListNode(...) verändert die Struktur der Liste.  
 >Wenn du später mit head.next arbeitest, ist deine Dummy-Node [0] hilfreich, um am Ende nur das echte Ergebnis ab head.next zurückzugeben.
 
 ## Leetcode Exercise 1 with better Time Complexity O(n log n)
 
-> The Code:
+**The Code (in Solution.java) :**
 
 ```java
       private int pointer1;
@@ -358,3 +361,37 @@ solved = solved.next verschiebt den Zeiger.
 ```
 
 > It uses Pointers instead of iterating through the Array two Times (Which is the previous one with a time complexity of O(n²)). This Code transforms an Array into a List, with this List it is checked, which values are needed to be added to sum up the target, of these values the indexes are returned. This is made because the original array is being sorted, so the indexes would be wrong.
+
+## Leetcode Exercise 3 (Dif: Medium)
+
+![Two Sum II - Input Array Is Sorted](resources/Leetcode-Problem3.png)
+
+**The Code (in Solution.java) :**
+
+```java
+public int[] twoSumSorted(int[] numbers, int target)
+      {
+            index1 = 0;
+            index2 = numbers.length - 1;
+            
+
+
+            while (index1 < index2)
+            {
+                  pointer1 = numbers[index1];
+                  pointer2 = numbers[index2];
+
+                  int sum = pointer1 + pointer2;
+
+                  if (sum > target) --index2;
+                  else if (sum < target) ++index1;
+                  else{
+                        int[] sol = {index1 + 1, index2 + 1};
+                        return sol;
+                  }
+            }
+            return null;
+      }
+```
+
+>Similar to the first exercise, this array is sorted, which makes it much easier to find the indexes. I used two Pointers to find the two values who summed up are equal to the target value.

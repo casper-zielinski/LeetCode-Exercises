@@ -225,18 +225,41 @@ public class Solution {
       public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
             List<Integer> list1 = Arrays.stream(nums1).boxed().collect(Collectors.toList());
-            List<Integer> list2 = Arrays.stream(nums2).boxed().collect(Collectors.toList());
+            
+
 
             return 3.14;
-
       
       }
 
-      public int[] divideandconquer(int[] nums1, int[] nums2)
+
+      
+      public int[] twoSumSorted(int[] numbers, int target)
       {
+            index1 = 0;
+            index2 = numbers.length - 1;
+            
+
+
+            while (index1 < index2)
+            {
+      	      pointer1 = numbers[index1];
+                  pointer2 = numbers[index2];
+
+                  int sum = pointer1 + pointer2;
+
+                  if (sum > target) --index2;
+                  else if (sum < target) ++index1;
+                  else{
+                        int[] sol = {index1 + 1, index2 + 1};
+                        return sol;
+                  }
+            }
             return null;
       }
 
+
+      
 
        
 }
