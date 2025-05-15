@@ -395,3 +395,4 @@ public int[] twoSumSorted(int[] numbers, int target)
 ```
 
 >Similar to the first exercise, this array is sorted, which makes it much easier to find the indexes. I used two Pointers to find the two values who summed up are equal to the target value.
+> The YT Video that explains how Pointers work: [https://www.youtube.com/watch?v=4YKBwKnTnlM&t=674s](YT-Video)
