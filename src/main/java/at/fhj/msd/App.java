@@ -1,6 +1,6 @@
 package at.fhj.msd;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 
 /**
  * Hello world!
@@ -28,11 +28,16 @@ public class App {
             try {
                 int test = Integer.parseInt(part);
                 ++count;
-            }catch (NumberFormatException e) { //can also be any exception
+            }catch (NumberFormatException e) { //can also be any exceptiong
                 
             }
         }
+
       System.out.println(count);
+      int[] num1 = {1,2,4,6,9,10,19};
+      // int[] num2 = {3,4};
+      // System.out.println(s.findMedianSortedArrays(num1, num2));
+      System.out.println(Arrays.toString(s.twoSumEfficient(num1, 19)));
     
 
       

@@ -207,7 +207,7 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 > The most of the documentation is in the Code Comments already, it uses recursive Method calling
 > to get to the next Node and saving it's value without overriding previous ones.
 
-In App.Java for Test:
+> In App.Java for Test:
 
 ```java
 ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
@@ -217,3 +217,88 @@ ListNode l2 = new ListNode(9, new ListNode(9, new ListNode (9, new ListNode(9)))
 System.out.println(s.addTwoNumbers(l1, l2));
 //Just to debug (It wont print anything logical)
 ```
+
+>Hier eine Erklärung wie der head und solved node funktioniert (weil ich damit am meisten Probleme hatte):
+
+
+>Du hast:
+
+```java
+
+public ListNode solved = new ListNode(0); // Startknoten (Dummy)
+public ListNode head = solved;            // head zeigt auf den Anfang der Liste
+```
+
+> Dann:
+
+```java
+
+solved.next = new ListNode(sum);
+
+```
+
+>➡️ Was passiert hier?
+
+- Du erzeugst einen neuen ListNode mit dem Wert sum
+
+- Du hängst diesen neuen Node an das aktuelle Ende (also an solved)
+
+- Die Liste hat sich strukturell verändert — head zeigt immer noch auf den Anfang, aber die verkettete Struktur hat sich erweitert
+
+```java
+
+solved = solved.next;
+
+```
+
+>➡️ Was passiert hier?
+
+- Du veränderst einfach nur die Referenz solved
+
+- Sie zeigt jetzt nicht mehr auf das erste Element, sondern auf das gerade angehängte neue Element (new ListNode(sum))
+
+>Aber:
+
+- head bleibt unverändert
+
+- head zeigt weiterhin auf den Dummy-Knoten ganz vorne ([0])
+  
+>🔍 Warum wird head nicht aktualisiert?  
+Weil du head und solved beide am Anfang auf denselben Knoten zeigen lässt:
+
+```java
+ListNode solved = new ListNode(0);
+ListNode head = solved;
+```
+
+>Danach zeigen sie auf dieselbe Stelle — aber sobald du solved = solved.next machst, zeigst du solved auf ein neues Objekt.  
+>Das ändert nichts an dem Objekt, auf das head zeigt.
+
+```java
+ListNode solved = new ListNode(0);  // Dummy-Startknoten
+ListNode head = solved;             // head zeigt auf solved
+
+solved.next = new ListNode(3);      // [0] -> [3]
+solved = solved.next;              // solved zeigt auf [3]
+solved.next = new ListNode(5);      // [0] -> [3] -> [5]
+```
+
+- head zeigt noch immer auf [0]
+
+- Du kannst am Ende alles traversieren über head, z. B.:
+
+```java
+while (head != null) {
+    System.out.println(head.val);
+    head = head.next;
+}
+// Ausgabe: 0 3 5
+
+```
+
+>Merksatz:  
+solved = solved.next verschiebt den Zeiger.
+
+>solved.next = new ListNode(...) verändert die Struktur der Liste.
+
+>Wenn du später mit head.next arbeitest, ist deine Dummy-Node [0] hilfreich, um am Ende nur das echte Ergebnis ab head.next zurückzugeben.

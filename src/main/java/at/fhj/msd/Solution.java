@@ -2,6 +2,7 @@ package at.fhj.msd;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class Solution {
@@ -22,6 +23,55 @@ public class Solution {
             }
             
             return Solution;
+      }
+
+     
+      private int pointer1;
+      private int pointer2; 
+      private int index1;
+      private int index2;
+      private int[] solution = new int[2];
+      
+      public int[] twoSumEfficient(int[] nums, int target)
+      {
+            
+            index1 = 0;
+            index2 = nums.length - 1;
+            int sum = nums[0] + nums[1];
+            solution[0] = 0;
+            solution[1] = 1;
+           
+
+            if (sum != target)
+            {
+                  while (true)
+                  {  
+                        pointer1 = nums[index1];
+                        pointer2 = nums[index2];
+                        sum = pointer1 + pointer2;
+                        if (sum > target)
+                        {
+                              --index2;
+                        }
+                        else if (sum < target)
+                        {
+                              ++index1;
+                        }
+                        if (sum == target)
+                        {
+                              solution[0]= index1;
+                              solution[1] = index2;
+                              return solution;
+                        
+                        }
+                  }
+            }
+            else
+            {
+                  return solution;
+            }
+            
+
       }
 
       public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Integer> l2)
@@ -100,9 +150,7 @@ public class Solution {
       public ListNode solved = new ListNode(0);
       public ListNode head = solved;
       public int carry = 0;
-      
 
-      
       public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
             /*
@@ -174,7 +222,15 @@ public class Solution {
 
 
       public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        return 3.14;
+
+            List<Integer> list = new ArrayList<>();
+            return 3.14;
+      
+      }
+
+      public int[] divideandconquer(int[] nums1, int[] nums2)
+      {
+            return null;
       }
 
 
