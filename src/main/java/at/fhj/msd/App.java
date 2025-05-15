@@ -34,10 +34,10 @@ public class App {
         }
 
       System.out.println(count);
-      int[] num1 = {1,2,4,6,9,10,19};
+      int[] num1 = {-1,-2,-3,-4,-5};
       // int[] num2 = {3,4};
       // System.out.println(s.findMedianSortedArrays(num1, num2));
-      System.out.println(Arrays.toString(s.twoSumEfficient(num1, 19)));
+      System.out.println(Arrays.toString(s.twoSumEfficient(num1, -8)));
     
 
       

@@ -1,8 +1,10 @@
 package at.fhj.msd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Solution {
@@ -32,17 +34,22 @@ public class Solution {
       private int index2;
       private int[] solution = new int[2];
       
+      
       public int[] twoSumEfficient(int[] nums, int target)
       {
-            
-            index1 = 0;
-            index2 = nums.length - 1;
-            int sum = nums[0] + nums[1];
-            solution[0] = 0;
-            solution[1] = 1;
-           
-
-            if (sum != target)
+      
+      int[] copy = nums;
+      List<Integer> list = Arrays.stream(copy).boxed().collect(Collectors.toList());
+      Arrays.sort(nums);
+      index1 = 0;
+      index2 = nums.length - 1;
+      int sum = list.get(index1) + list.get(1);
+      solution[0] = 0;
+      solution[1] = 1;
+        
+        if (sum != target)
+        {
+            if (target >= 0)
             {
                   while (true)
                   {  
@@ -59,8 +66,8 @@ public class Solution {
                         }
                         if (sum == target)
                         {
-                              solution[0]= index1;
-                              solution[1] = index2;
+                              solution[0]= list.indexOf(pointer1);
+                              solution[1] = list.lastIndexOf(pointer2);
                               return solution;
                         
                         }
@@ -68,10 +75,32 @@ public class Solution {
             }
             else
             {
-                  return solution;
+                  while (true)
+                  {  
+                        pointer1 = nums[index1];
+                        pointer2 = nums[index2];
+                        sum = pointer1 + pointer2;
+                        if (sum > target)
+                        {
+                              --index2;
+                        }
+                        
+                        else if (sum < target)
+                        {
+                              ++index1;
+                        }
+                        if (sum == target)
+                        {
+                              solution[0] = list.indexOf(pointer1);
+                              solution[1] = list.lastIndexOf(pointer2);
+                              return solution;
+                        
+                        }
+                  }
             }
+        }
+        else return solution;
             
-
       }
 
       public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Integer> l2)
