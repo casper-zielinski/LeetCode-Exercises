@@ -259,6 +259,40 @@ public class Solution {
       }
 
 
+
+      public String longestPalindrome(String s) {
+            String[] Super = s.split("");
+            index1 = 0;
+            index2 = Super.length - 1;
+
+            int to = Super.length - 1;
+            int from = 0;
+            String solution_prev = "";
+            String solution_next = "";
+
+
+            if (Super.length % 2 == 0)
+            {
+                  while (index1 < (Super.length / 2)) 
+                  { 
+                      if (Super[index1].equals(Super[index2]))
+                      {
+                        solution_prev += Super[index1];
+                        solution_next += Super[index2];
+
+                      }
+                      ++index1;
+                      --index2;
+                  }
+            }
+            else
+            {
+
+            }
+
+
+            return String.format("%s%s",solution_prev,solution_next);
+      }
       
 
        
