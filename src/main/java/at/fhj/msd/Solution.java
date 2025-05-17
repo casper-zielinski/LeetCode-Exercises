@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class Solution {
+public class Solution<T> {
 
       public int[] twoSum(int[] nums, int target){
             int [] Solution = new int[2];
@@ -260,6 +260,9 @@ public class Solution {
 
 
 
+      
+
+      public int inOF = 0;
       public String longestPalindrome(String s) {
             String[] sArray = s.split("");
             List<String> sList = new ArrayList<>();
@@ -321,7 +324,15 @@ public class Solution {
                 sList.add(sArray[i]);  
             }
            }
-            return palindromList.get(whichindex.getLast());
+
+           if (!palindromList.isEmpty())
+           {
+             return palindromList.get(whichindex.getLast());
+           }
+           else{
+            return sArray[0];
+           }
+           
       }
       
 

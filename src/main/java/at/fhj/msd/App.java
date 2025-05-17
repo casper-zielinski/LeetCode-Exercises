@@ -40,7 +40,7 @@ public class App {
       // System.out.println(s.findMedianSortedArrays(num1, num2));
       // System.out.println(Arrays.toString(s.twoSumEfficient(num1, -8)));
       System.out.println(Arrays.toString(s.twoSumSorted(num1, -1)));
-      System.out.println(s.longestPalindrome("cbbdcccabsg"));
+      System.out.println(s.longestPalindrome("bbaaa"));
     
 
       
