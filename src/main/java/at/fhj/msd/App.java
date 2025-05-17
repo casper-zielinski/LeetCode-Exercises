@@ -26,6 +26,7 @@ public class App {
       int count = 0;
         for (String part : parts) {
             try {
+                @SuppressWarnings("unused")
                 int test = Integer.parseInt(part);
                 ++count;
             }catch (NumberFormatException e) { //can also be any exceptiong
@@ -39,7 +40,7 @@ public class App {
       // System.out.println(s.findMedianSortedArrays(num1, num2));
       // System.out.println(Arrays.toString(s.twoSumEfficient(num1, -8)));
       System.out.println(Arrays.toString(s.twoSumSorted(num1, -1)));
-      System.out.println(s.longestPalindrome("cbbd"));
+      System.out.println(s.longestPalindrome("cbbdcccabsg"));
     
 
       

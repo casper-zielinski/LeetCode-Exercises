@@ -32,7 +32,7 @@ public class Solution {
       private int pointer2; 
       private int index1;
       private int index2;
-      private int[] solution = new int[2];
+      private final int[] solution = new int[2];
       
       
       public int[] twoSumEfficient(int[] nums, int target)
@@ -261,37 +261,67 @@ public class Solution {
 
 
       public String longestPalindrome(String s) {
-            String[] Super = s.split("");
-            index1 = 0;
-            index2 = Super.length - 1;
+            String[] sArray = s.split("");
+            List<String> sList = new ArrayList<>();
+            List<String> palindromList = new ArrayList<>();
+            LinkedList<Integer> whichindex = new LinkedList<>();
+            String palindrom = "";
+            int count = 0;
+            
+            index2 = 0;
 
-            int to = Super.length - 1;
-            int from = 0;
-            String solution_prev = "";
-            String solution_next = "";
-
-
-            if (Super.length % 2 == 0)
+           for (int i = 0; i < sArray.length; i++)
+           {
+            
+            if (sList.contains(sArray[i]))
             {
-                  while (index1 < (Super.length / 2)) 
-                  { 
-                      if (Super[index1].equals(Super[index2]))
-                      {
-                        solution_prev += Super[index1];
-                        solution_next += Super[index2];
-
-                      }
-                      ++index1;
-                      --index2;
+                 index1 = sList.indexOf(sArray[i]);
+                 sList.add(sArray[i]);
+                 index2 = sList.lastIndexOf(sArray[i]);
+                 int copy_index2 = index2;
+                 int distance = index2 - index1;
+                 int j = 0;
+                 int right = 0;
+                 while (j < distance)
+                 {
+                  if (j == 0) palindrom = "";
+                  
+                  if (sList.get(index1).equals(sList.get(index2)))
+                  {
+                        ++right;
+                        palindrom += sArray[index2];
                   }
+                  ++index1;
+                  --index2;
+                  ++j;
+                 }
+
+                 if (right == distance)
+                 {
+                  palindrom+= sArray[copy_index2];
+                  palindromList.add(palindrom);
+                  if (palindromList.size() > 1)
+                  {
+                        if (palindromList.get(count - 1).length() > palindromList.get(count).length())
+                        {
+                              whichindex.addFirst(count);
+                        }
+                        else
+                        {
+                              whichindex.addLast(count);
+                        }
+                  }
+                  else{
+                        whichindex.add(count); 
+                  }
+                  ++count;
+                 }
             }
-            else
-            {
-
+            else{
+                sList.add(sArray[i]);  
             }
-
-
-            return String.format("%s%s",solution_prev,solution_next);
+           }
+            return palindromList.get(whichindex.getLast());
       }
       
 
