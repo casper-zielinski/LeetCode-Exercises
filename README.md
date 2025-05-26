@@ -225,16 +225,16 @@ System.out.println(s.addTwoNumbers(l1, l2));
 //Just to debug (It wont print anything logical)
 ```
 
->Hier eine Erklärung wie der head und solved node funktioniert (weil ich damit am meisten Probleme hatte):  
->Du hast:
+>Here's an explanation of how the head and solved nodes work (because this part confused me the most):
+>This Code
 
 ```java
 
-public ListNode solved = new ListNode(0); // Startknoten (Dummy)
-public ListNode head = solved;            // head zeigt auf den Anfang der Liste
+public ListNode solved = new ListNode(0); // Startnode (Dummy)
+public ListNode head = solved;            // head points to the Start of the List
 ```
 
-> Dann:
+> Then:
 
 ```java
 
@@ -242,13 +242,13 @@ solved.next = new ListNode(sum);
 
 ```
 
->➡️ Was passiert hier?
+>➡️ What’s happening here?
 
-- Du erzeugst einen neuen ListNode mit dem Wert sum
+- You create a new ListNode with the value sum.
 
-- Du hängst diesen neuen Node an das aktuelle Ende (also an solved)
+- You attach this new node to the end of the current list (i.e., to solved).
 
-- Die Liste hat sich strukturell verändert — head zeigt immer noch auf den Anfang, aber die verkettete Struktur hat sich erweitert
+- The structure of the list has changed — head still points to the beginning, but the linked structure has been extended.
 
 ```java
 
@@ -256,55 +256,55 @@ solved = solved.next;
 
 ```
 
->➡️ Was passiert hier?
+>➡️ What’s happening here?
 
-- Du veränderst einfach nur die Referenz solved
+- You're just changing the reference solved.
 
-- Sie zeigt jetzt nicht mehr auf das erste Element, sondern auf das gerade angehängte neue Element (new ListNode(sum))
+- It no longer points to the first node but to the newly added node (new ListNode(sum)).
 
->Aber:
+>But:
 
-- head bleibt unverändert
+- head remains unchanged.
 
-- head zeigt weiterhin auf den Dummy-Knoten ganz vorne ([0])
+- head still points to the dummy node at the front ([0]).
   
->🔍 Warum wird head nicht aktualisiert?  
-Weil du head und solved beide am Anfang auf denselben Knoten zeigen lässt:
+>🔍 Why doesn't head get updated?
+Because you initially made head and solved point to the same node:
 
 ```java
 ListNode solved = new ListNode(0);
 ListNode head = solved;
 ```
 
->Danach zeigen sie auf dieselbe Stelle — aber sobald du solved = solved.next machst, zeigst du solved auf ein neues Objekt.  
->Das ändert nichts an dem Objekt, auf das head zeigt.
+>After this, they both point to the same place — but as soon as you do solved = solved.next, you're changing the reference of solved to a new object.  
+>This doesn't change the object that head is pointing to.
 
 ```java
-ListNode solved = new ListNode(0);  // Dummy-Startknoten
-ListNode head = solved;             // head zeigt auf solved
+ListNode solved = new ListNode(0);  // Dummy-StartNode
+ListNode head = solved;             // head points to solved
 
 solved.next = new ListNode(3);      // [0] -> [3]
-solved = solved.next;              // solved zeigt auf [3]
+solved = solved.next;              // solved points to [3]
 solved.next = new ListNode(5);      // [0] -> [3] -> [5]
 ```
 
-- head zeigt noch immer auf [0]
+- head still points to [0].
 
-- Du kannst am Ende alles traversieren über head, z. B.:
+- You can traverse the entire list starting from head, for example:
 
 ```java
 while (head != null) {
     System.out.println(head.val);
     head = head.next;
 }
-// Ausgabe: 0 3 5
+// Output: 0 3 5
 
 ```
 
->Merksatz:  
-solved = solved.next verschiebt den Zeiger.  
->solved.next = new ListNode(...) verändert die Struktur der Liste.  
->Wenn du später mit head.next arbeitest, ist deine Dummy-Node [0] hilfreich, um am Ende nur das echte Ergebnis ab head.next zurückzugeben.
+>💡 Key takeaway:
+solved = solved.next moves the pointer.
+solved.next = new ListNode(...) changes the structure of the list.
+When you later work with head.next, the dummy node [0] helps you return just the actual result starting from head.next.
 
 ## Leetcode Exercise 1 with better Time Complexity O(n log n)
 
@@ -498,3 +498,11 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             }
       }
 ```
+
+- The ``findMedianSortedArrays()`` Method calls the ``AddToSortedList()`` Method with the given Arrays and finds the Median in them. The ``AddToSortedList()`` Method merges the Arrays into a List while still keeping the List sorted. The ``checkMin()`` Method checks two values and returns the smaller one. The ``setPointer1()`` and ``setPointer2()`` Method both set The Pointers to another if one Array has been already iterated through.
+
+## Leetcode Exercise 5 (Dif: Easy)
+
+![Problem 5](resources/Leetcode-Problem5.png)
+
+*Problem: You have an Integer Array with duplicates, return how many unique charachters exist.*
