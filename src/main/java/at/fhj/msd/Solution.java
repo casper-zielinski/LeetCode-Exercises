@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.plaf.BorderUIResource;
+
 
 public class Solution<T> {
 
@@ -221,19 +223,8 @@ public class Solution<T> {
             return head.next;
       }
 
-
-      public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-
-            List<Integer> list1 = Arrays.stream(nums1).boxed().collect(Collectors.toList());
-            
-
-
-            return 3.14;
       
-      }
 
-
-      
       public int[] twoSumSorted(int[] numbers, int target)
       {
             index1 = 0;
@@ -258,81 +249,99 @@ public class Solution<T> {
             return null;
       }
 
+   
+    
+      public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            List<Integer> SortedList = AddToSortedList(nums1, nums2);
 
-
-      
-
-      public int inOF = 0;
-      public String longestPalindrome(String s) {
-            String[] sArray = s.split("");
-            List<String> sList = new ArrayList<>();
-            List<String> palindromList = new ArrayList<>();
-            LinkedList<Integer> whichindex = new LinkedList<>();
-            String palindrom = "";
-            int count = 0;
-            
-            index2 = 0;
-
-           for (int i = 0; i < sArray.length; i++)
-           {
-            
-            if (sList.contains(sArray[i]))
+            if (SortedList.size() % 2 == 0)
             {
-                 index1 = sList.indexOf(sArray[i]);
-                 sList.add(sArray[i]);
-                 index2 = sList.lastIndexOf(sArray[i]);
-                 int copy_index2 = index2;
-                 int distance = index2 - index1;
-                 int j = 0;
-                 int right = 0;
-                 while (j < distance)
-                 {
-                  if (j == 0) palindrom = "";
-                  
-                  if (sList.get(index1).equals(sList.get(index2)))
-                  {
-                        ++right;
-                        palindrom += sArray[index2];
-                  }
-                  ++index1;
-                  --index2;
-                  ++j;
-                 }
-
-                 if (right == distance)
-                 {
-                  palindrom+= sArray[copy_index2];
-                  palindromList.add(palindrom);
-                  if (palindromList.size() > 1)
-                  {
-                        if (palindromList.get(count - 1).length() > palindromList.get(count).length())
-                        {
-                              whichindex.addFirst(count);
-                        }
-                        else
-                        {
-                              whichindex.addLast(count);
-                        }
-                  }
-                  else{
-                        whichindex.add(count); 
-                  }
-                  ++count;
-                 }
+                  double BeforeMedian = SortedList.get(SortedList.size()/2-1);
+                  double AfterMedian = SortedList.get(SortedList.size()/2);
+                  return (BeforeMedian + AfterMedian) / 2;
             }
             else{
-                sList.add(sArray[i]);  
+                  int Median = SortedList.size()/2;
+                  return SortedList.get(Median);
             }
-           }
+            
+      }
 
-           if (!palindromList.isEmpty())
-           {
-             return palindromList.get(whichindex.getLast());
-           }
-           else{
-            return sArray[0];
-           }
-           
+      public List<Integer> AddToSortedList(int[] nums1, int[] nums2)
+      {
+            List<Integer> SortedList = new ArrayList<>();
+            index1 = 0;
+            index2 = 0;
+
+            while (true) { 
+             try {
+                pointer1 = setPointer1(nums1, nums2);
+                pointer2 = setPointer2(nums1, nums2);
+                if (pointer1 == pointer2)
+                {
+                  
+                  if (index1 < nums1.length && index2 < nums2.length)
+                  {
+                        SortedList.add(pointer2);
+                  }
+                  
+
+                  index1++;
+                  index2++;
+                }
+                else if (checkMin(pointer1, pointer2) == pointer2)
+                {
+                  index2++;
+                }
+                else if (checkMin(pointer1, pointer2) == pointer1)
+                {
+                  index1++;
+                }
+                SortedList.add(checkMin(pointer1, pointer2));
+               
+             }catch (IndexOutOfBoundsException e) {
+                  return SortedList;
+            }
+      }
+                
+      }
+
+
+      public int checkMin(int pointer1, int pointer2)
+      {
+            if (pointer1 < pointer2)
+            {
+                  return pointer1;
+            }
+            else if(pointer2 < pointer1)
+            {
+                  return pointer2;
+            }
+            else{
+                  return pointer1;
+            }
+      }
+
+      public int setPointer1(int[] nums1, int[] nums2)
+      {
+            if (index1 < nums1.length)
+            {
+                  return nums1[index1];
+            }
+            else{
+                  return nums2[index2];
+            }
+      }
+
+      public int setPointer2(int[] nums1, int[] nums2)
+      {
+            if (index2 < nums2.length)
+            {
+                  return nums2[index2];
+            }
+            else{
+                  return nums1[index1];
+            }
       }
       
 
