@@ -2,6 +2,8 @@ package at.fhj.msd;
 
 import java.util.Arrays;
 
+import static at.fhj.msd.Exercise_5.removeDuplicates;
+
 /**
  * Hello world!
  */
@@ -34,11 +36,10 @@ public class App {
             }
         }
 
-      System.out.println(count);
-      int[] num1 = {1,1,1,1,1,1,1,1,1,1,4,4};
-      int[] num2 = {1,3,4,4,4,4,4,4,4,4,4};
-      System.out.println(s.findMedianSortedArrays(num1, num2));
-      
+      //System.out.println(count);
+      int[] num = {0,0,1,1,1,2,2,3,3,4};
+      System.out.println(removeDuplicates(num));
+      System.out.println(Arrays.toString(num));
       
      
     

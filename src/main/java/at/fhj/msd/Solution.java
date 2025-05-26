@@ -11,6 +11,13 @@ import javax.swing.plaf.BorderUIResource;
 
 public class Solution<T> {
 
+      private int pointer1;
+      private int pointer2; 
+      private int index1;
+      private int index2;
+      private final int[] solution = new int[2];
+      
+
       public int[] twoSum(int[] nums, int target){
             int [] Solution = new int[2];
 
@@ -29,13 +36,7 @@ public class Solution<T> {
             return Solution;
       }
 
-     
-      private int pointer1;
-      private int pointer2; 
-      private int index1;
-      private int index2;
-      private final int[] solution = new int[2];
-      
+
       
       public int[] twoSumEfficient(int[] nums, int target)
       {
@@ -342,6 +343,11 @@ public class Solution<T> {
             else{
                   return nums1[index1];
             }
+      }
+
+      public int removeDuplicates(int[] nums) {
+            
+        return 2;
       }
       
 
