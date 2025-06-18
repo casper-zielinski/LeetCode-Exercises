@@ -506,3 +506,12 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 ![Problem 5](resources/Leetcode-Problem5.png)
 
 *Problem: You have an Integer Array with duplicates, return how many unique charachters exist.*
+
+## Leetcode Exercise 6 (Dif: Medium)
+
+![Problem 6](resources/Leetcode-Problem6.png) 
+
+*Problem: Find the Longest Palindrom in a String and return it*
+
+Solved it usind DP (Dynamic Programming) 
+Solving Bigger Problems using Solutions from smaller Problems
