@@ -522,10 +522,12 @@ Solving Bigger Problems using Solutions from smaller Problems
 
 *Problem: Find occurrences of val value in a integer array and delete it, while the other values are at the left side, the right side is not important and can be whatever it can be.*
 
-Solved it usind Two-Pointers and swaping the Elements and Deleting the Element val by Transforming it to -1
+Solved it using Two-Pointers and swaping the Elements and Deleting the Element val by Transforming it to -1
 
 ## Leetcode Exercise 8 (Dif: Easy)
 
 ![Problem 8](resources/Leetcode-Problem8.png)
 
 *Problem: Find a String in a different String and give the index (Starting index) of the first occurrence, return -1 if the substring is not found*
+
+Solved it using Two Pointers, but can be done faster (Sliding Window).
