@@ -531,3 +531,11 @@ Solved it using Two-Pointers and swaping the Elements and Deleting the Element v
 *Problem: Find a String in a different String and give the index (Starting index) of the first occurrence, return -1 if the substring is not found*
 
 Solved it using Two Pointers, but can be done faster (Sliding Window).
+
+It thought it can be done better using Sliding Window, but it is slower because of the building of the sliding window.
+
+Faster with: KMP-Algorithmus (Knuth-Morris-Pratt).
+
+## Leetcode Exercise 9 (Dif: Medium)
+
+![Problem 9](resources/Leetcode-Problem9.png)
