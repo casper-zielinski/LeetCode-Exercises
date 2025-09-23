@@ -2,67 +2,30 @@ package at.fhj.msd;
 
 public class Exercise_9 {
 
-      private int pointer1;
-      private int pointer2;
-      private int pointer1_pos;
-      private int pointer2_pos;
-      private int left;
-      private int right;
-      private int area;
-      private int area_temp;
-      private int area_temp_2;
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
 
-      public int maxArea(int[] height) {
-        
-            left = 0;
-            right = height.length - 1;
-            pointer1_pos = left;
-            pointer2_pos = right;
-            pointer1 = height[left];
-            pointer2 = height[right];
-            
-            while (right > -1 && left < height.length)
-            {
+        while (left < right) {
+            // Berechnent aktuelle Area
+            int width = right - left;
+            int minHeight = Math.min(height[left], height[right]);
+            int currentArea = width * minHeight;
 
-                  if (height[left] >= pointer1)
-                  {
-                        pointer1 = height[left];
-                        pointer1_pos = left;
-                  }
-                  if (height[right] >= pointer2)
-                  {
-                        pointer2 = height[right];
-                        pointer2_pos = right;
-                  }
+            // Update maximum area
+            maxArea = Math.max(maxArea, currentArea);
 
-                  if (right >= left)
-                  {
-                        area_temp = Integer.min(pointer1, pointer2) * (pointer2_pos - pointer1_pos);
-                        area_temp_2 = Integer.min(height[left], height[right]) * (right - left);
-                  }
-                  else
-                  {
-                        area_temp = Integer.min(pointer1, pointer2) * (pointer1_pos - pointer2_pos);
-                        area_temp_2 = Integer.min(height[left], height[right]) * (left - right);
-                  }
-                  
-
-
-
-
-                  left++;
-                  right--;
-
-                  if (area_temp > area)
-                  {
-                        area = area_temp;
-                  }
-                  if (area_temp_2 > area)
-                  {
-                        area = area_temp_2;
-                  }
+            // Bewege den Pointer mit der kleineren Höhe
+            // Warum? Der kleinere limitiert die Area,
+            // also probieren wir eine größere Höhe zu finden
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
             }
+        }
 
-            return area;
-      }
+        return maxArea;
+    }
 }

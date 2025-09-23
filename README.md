@@ -3,8 +3,9 @@
 ## Leetcode exercise 1 (Dif: Easy)
 
 ![Leetcode Problem](resources/Leetcode-Problem1.png)
+
 > Two Sum [X]  
-> It returns two Values, those two Values are indexes of the Array that the method received. The indexes both show to values, and those values added are the target Integer, that is also given to the ``twoSum()`` method
+> It returns two Values, those two Values are indexes of the Array that the method received. The indexes both show to values, and those values added are the target Integer, that is also given to the `twoSum()` method
 
 **The Code (in Solution.java) :**
 
@@ -19,13 +20,13 @@ public int[] twoSum(int[] nums, int target){
   {
       if (nums[i] + nums[j] = =target && i != j)
       {
-       Solution[0] = i;                 
+       Solution[0] = i;
        Solution[1] = j;
       }
   }
 
  }
-            
+
       return Solution;
 }
 ```
@@ -38,7 +39,7 @@ public int[] twoSum(int[] nums, int target){
  int target = 6;
  Solution s = new Solution();
 
-System.out.println(Arrays.toString(s.twoSum(v, target)));  
+System.out.println(Arrays.toString(s.twoSum(v, target)));
 
 ```
 
@@ -46,7 +47,7 @@ System.out.println(Arrays.toString(s.twoSum(v, target)));
 
 ![Leetcode Problem 2](resources/Leetcode-Problem2.png)
 
-> I firstly did it wrong, because to use the Test Cases provided by Leetcode, you need to use the ``ListNode.java`` Class provided:
+> I firstly did it wrong, because to use the Test Cases provided by Leetcode, you need to use the `ListNode.java` Class provided:
 
 **The Code (in ListNode.java) :**
 
@@ -60,7 +61,7 @@ public class ListNode {
 }
 ```
 
-> and I just used Linked List, which worked, the result came the same as in the test cases, but the test cases didn't work, so i made it again using the ``ListNode.java`` Class.  
+> and I just used Linked List, which worked, the result came the same as in the test cases, but the test cases didn't work, so i made it again using the `ListNode.java` Class.  
 > This is the Method using Linked List:
 
 **The Code (in Solution.java) :**
@@ -91,7 +92,7 @@ public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Inte
         LinkedList<Integer> solution = new LinkedList<>();
             if (s1.size() > s2.size())
             {
-                  
+
                   for (int i = 0; i < s1.size(); i++)
                   {
                     one += (s1.get(i).toString());
@@ -99,7 +100,7 @@ public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Inte
                     {
                         two += (s2.get(i).toString());
                     }
-                   
+
                   }
             }
             else if (s2.size() > s1.size())
@@ -126,13 +127,13 @@ public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Inte
 
             String numberStr = Integer.toString(numsolv);
             int digit[] = new int[numberStr.length()];
-           
+
            for (int i = 0; i < numberStr.length(); i++)
            {
             digit[i] = numberStr.charAt(i) - '0';
             solution.addFirst(digit[i]);
            }
-           
+
             return solution;
       }
 ```
@@ -143,16 +144,16 @@ public LinkedList<Integer> addTwoNumber(LinkedList<Integer> l1 , LinkedList<Inte
 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
             /*
-             * Summing both Values and the Carry Value 
+             * Summing both Values and the Carry Value
              * (if 5 + 5 = 10, then sum = 0 and carry 1)
-             * carry is just sum / 10, because it is an integer, 
+             * carry is just sum / 10, because it is an integer,
              * the commas are ignored
              * if there is a carry, then sum should only be the first number
              * (so 6 + 6 --> sum = 2 and carry = 1)
-            */ 
+            */
             int sum = l1.val + l2.val + carry;
             carry = sum/10; //
-            if (carry >= 1) sum = sum % 10; // 
+            if (carry >= 1) sum = sum % 10; //
             solved.next = new ListNode(sum);
             solved = solved.next;
 
@@ -160,28 +161,28 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
              * Here are the recursiv Functions
              * They purpose is to take the next
              * Node (the .next Node) and
-             * with that solve the sum equation and 
+             * with that solve the sum equation and
              * adding it to the head ListNode
              * This works with the lines:
              * solved.next = new ListNode(sum);
              * solved = solved.next;
              * With solver.next the new ListNode Element
-             * is also added to the header and 
+             * is also added to the header and
              * with the solved = solved.next line
              * it goes to the next Node Element
-             * 
-             * The if statements are there to check if the 
-             * given List Node are Empty, and if they are, then to just use 
-             * a ListNode Element with the Value 0, which makes sense when it 
+             *
+             * The if statements are there to check if the
+             * given List Node are Empty, and if they are, then to just use
+             * a ListNode Element with the Value 0, which makes sense when it
              * comes to adding two numbers different size
-             * 
+             *
              * The last if statement is there to check if these
              * is still a carry, if there is
              * than it should be appended to the solution
              * via:
              * solved.next = new ListNode(carry);
              * solved = solved.next;
-             * 
+             *
              * than the head.next is returned, because the first value is a placeholder
              * public ListNode solved = new ListNode(0);
              * public ListNode head = solved;
@@ -205,7 +206,7 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
                   solved.next = new ListNode(carry);
                   solved = solved.next;
             }
-            
+
             return head.next;
       }
 ```
@@ -225,8 +226,8 @@ System.out.println(s.addTwoNumbers(l1, l2));
 //Just to debug (It wont print anything logical)
 ```
 
->Here's an explanation of how the head and solved nodes work (because this part confused me the most):
->This Code
+> Here's an explanation of how the head and solved nodes work (because this part confused me the most):
+> This Code
 
 ```java
 
@@ -242,7 +243,7 @@ solved.next = new ListNode(sum);
 
 ```
 
->➡️ What’s happening here?
+> ➡️ What’s happening here?
 
 - You create a new ListNode with the value sum.
 
@@ -256,28 +257,28 @@ solved = solved.next;
 
 ```
 
->➡️ What’s happening here?
+> ➡️ What’s happening here?
 
 - You're just changing the reference solved.
 
 - It no longer points to the first node but to the newly added node (new ListNode(sum)).
 
->But:
+> But:
 
 - head remains unchanged.
 
 - head still points to the dummy node at the front ([0]).
-  
->🔍 Why doesn't head get updated?
-Because you initially made head and solved point to the same node:
+
+> 🔍 Why doesn't head get updated?
+> Because you initially made head and solved point to the same node:
 
 ```java
 ListNode solved = new ListNode(0);
 ListNode head = solved;
 ```
 
->After this, they both point to the same place — but as soon as you do solved = solved.next, you're changing the reference of solved to a new object.  
->This doesn't change the object that head is pointing to.
+> After this, they both point to the same place — but as soon as you do solved = solved.next, you're changing the reference of solved to a new object.  
+> This doesn't change the object that head is pointing to.
 
 ```java
 ListNode solved = new ListNode(0);  // Dummy-StartNode
@@ -301,10 +302,10 @@ while (head != null) {
 
 ```
 
->💡 Key takeaway:
-solved = solved.next moves the pointer.
-solved.next = new ListNode(...) changes the structure of the list.
-When you later work with head.next, the dummy node [0] helps you return just the actual result starting from head.next.
+> 💡 Key takeaway:
+> solved = solved.next moves the pointer.
+> solved.next = new ListNode(...) changes the structure of the list.
+> When you later work with head.next, the dummy node [0] helps you return just the actual result starting from head.next.
 
 ## Leetcode Exercise 1 with better Time Complexity O(n log n)
 
@@ -312,15 +313,15 @@ When you later work with head.next, the dummy node [0] helps you return just the
 
 ```java
       private int pointer1;
-      private int pointer2; 
+      private int pointer2;
       private int index1;
       private int index2;
       private int[] solution = new int[2];
-      
-      
+
+
       public int[] twoSumEfficient(int[] nums, int target)
       {
-      
+
       int[] copy = nums;
       List<Integer> list = Arrays.stream(copy).boxed().collect(Collectors.toList());
       Arrays.sort(nums);
@@ -329,12 +330,12 @@ When you later work with head.next, the dummy node [0] helps you return just the
       int sum = list.get(index1) + list.get(1);
       solution[0] = 0;
       solution[1] = 1;
-        
+
         if (sum != target)
         {
-            
+
             while (true)
-            {  
+            {
                   pointer1 = nums[index1];
                   pointer2 = nums[index2];
                   sum = pointer1 + pointer2;
@@ -351,7 +352,7 @@ When you later work with head.next, the dummy node [0] helps you return just the
                         solution[0]= list.indexOf(pointer1);
                         solution[1] = list.lastIndexOf(pointer2);
                         return solution;
-                        
+
                   }
             }
         }
@@ -373,7 +374,7 @@ public int[] twoSumSorted(int[] numbers, int target)
       {
             index1 = 0;
             index2 = numbers.length - 1;
-            
+
 
 
             while (index1 < index2)
@@ -394,14 +395,14 @@ public int[] twoSumSorted(int[] numbers, int target)
       }
 ```
 
->Similar to the first exercise, this array is sorted, which makes it much easier to find the indexes. I used two Pointers to find the two values who summed up are equal to the target value.
+> Similar to the first exercise, this array is sorted, which makes it much easier to find the indexes. I used two Pointers to find the two values who summed up are equal to the target value.
 > The YT Video that explains how Pointers work: [https://www.youtube.com/watch?v=4YKBwKnTnlM&t=674s](YT-Video)
 
 ## Leetcode Exercise 4 (Dif: Hard)
 
 ![Leetcode Problem 4](resources/Leetcode-Problem4.png)
 
->Used Pointers to go through the arrays and add them to the list. Althrough it works, the Time Complexity is O(n+m) [n being the length of the first array and m the length of the second array].  
+> Used Pointers to go through the arrays and add them to the list. Althrough it works, the Time Complexity is O(n+m) [n being the length of the first array and m the length of the second array].  
 > Also used more Methods to make the Code readable
 
 ```java
@@ -418,7 +419,7 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
                   int Median = SortedList.size()/2;
                   return SortedList.get(Median);
             }
-            
+
       }
 
       public List<Integer> AddToSortedList(int[] nums1, int[] nums2)
@@ -427,18 +428,18 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             index1 = 0;
             index2 = 0;
 
-            while (true) { 
+            while (true) {
              try {
                 pointer1 = setPointer1(nums1, nums2);
                 pointer2 = setPointer2(nums1, nums2);
                 if (pointer1 == pointer2)
                 {
-                  
+
                   if (index1 < nums1.length && index2 < nums2.length)
                   {
                         SortedList.add(pointer2);
                   }
-                  
+
 
                   index1++;
                   index2++;
@@ -452,12 +453,12 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
                   index1++;
                 }
                 SortedList.add(checkMin(pointer1, pointer2));
-               
+
              }catch (IndexOutOfBoundsException e) {
                   return SortedList;
             }
       }
-                
+
       }
 
 
@@ -499,28 +500,28 @@ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
       }
 ```
 
-- The ``findMedianSortedArrays()`` Method calls the ``AddToSortedList()`` Method with the given Arrays and finds the Median in them. The ``AddToSortedList()`` Method merges the Arrays into a List while still keeping the List sorted. The ``checkMin()`` Method checks two values and returns the smaller one. The ``setPointer1()`` and ``setPointer2()`` Method both set The Pointers to another if one Array has been already iterated through.
+- The `findMedianSortedArrays()` Method calls the `AddToSortedList()` Method with the given Arrays and finds the Median in them. The `AddToSortedList()` Method merges the Arrays into a List while still keeping the List sorted. The `checkMin()` Method checks two values and returns the smaller one. The `setPointer1()` and `setPointer2()` Method both set The Pointers to another if one Array has been already iterated through.
 
 ## Leetcode Exercise 5 (Dif: Easy)
 
 ![Problem 5](resources/Leetcode-Problem5.png)
 
-*Problem: You have an Integer Array with duplicates, return how many unique charachters exist.*
+_Problem: You have an Integer Array with duplicates, return how many unique charachters exist._
 
 ## Leetcode Exercise 6 (Dif: Medium)
 
-![Problem 6](resources/Leetcode-Problem6.png) 
+![Problem 6](resources/Leetcode-Problem6.png)
 
-*Problem: Find the Longest Palindrom in a String and return it*
+_Problem: Find the Longest Palindrom in a String and return it_
 
-Solved it usind DP (Dynamic Programming) 
+Solved it usind DP (Dynamic Programming)
 Solving Bigger Problems using Solutions from smaller Problems
 
 ## Leetcode Exercise 7 (Dif: Easy)
 
 ![Problem 7](resources/Leetcode-Problem7.png)
 
-*Problem: Find occurrences of val value in a integer array and delete it, while the other values are at the left side, the right side is not important and can be whatever it can be.*
+_Problem: Find occurrences of val value in a integer array and delete it, while the other values are at the left side, the right side is not important and can be whatever it can be._
 
 Solved it using Two-Pointers and swaping the Elements and Deleting the Element val by Transforming it to -1
 
@@ -528,7 +529,7 @@ Solved it using Two-Pointers and swaping the Elements and Deleting the Element v
 
 ![Problem 8](resources/Leetcode-Problem8.png)
 
-*Problem: Find a String in a different String and give the index (Starting index) of the first occurrence, return -1 if the substring is not found*
+_Problem: Find a String in a different String and give the index (Starting index) of the first occurrence, return -1 if the substring is not found_
 
 Solved it using Two Pointers, but can be done faster (Sliding Window).
 
@@ -539,3 +540,115 @@ Faster with: KMP-Algorithmus (Knuth-Morris-Pratt).
 ## Leetcode Exercise 9 (Dif: Medium)
 
 ![Problem 9](resources/Leetcode-Problem9.png)
+
+auch simplet two pointer approach
+
+Code:
+
+````java
+public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            // Berechnent aktuelle Area
+            int width = right - left;
+            int minHeight = Math.min(height[left], height[right]);
+            int currentArea = width * minHeight;
+
+            // Update maximum area
+            maxArea = Math.max(maxArea, currentArea);
+
+            // Bewege den Pointer mit der kleineren Höhe
+            // Warum? Der kleinere limitiert die Area,
+            // also probieren wir eine größere Höhe zu finden
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+```
+
+## Leetcode Exercis 10 (Dif: Easy)
+
+![Problem 10](resources/Leetcode-Problem10.png)
+
+Used a two Pointer approach, if one sign was not alphanumeric, skip the pointer on this postion to left/right and continue with the checking.
+
+The code:
+
+```java
+    private int pointer1;
+    private int pointer2;
+
+    public boolean isPalindrome(String s) {
+        String[] sArr = s.split("");
+        pointer1 = 0;
+        pointer2 = sArr.length - 1;
+
+        while (pointer2 > pointer1) {
+            if (!(sArr[pointer1].matches("[A-Za-z0-9]"))) {
+                  pointer1++;
+                  continue;
+            }
+            if (!(sArr[pointer2].matches("[A-Za-z0-9]"))) {
+                  pointer2--;
+                  continue;
+            }
+            if (!(sArr[pointer1].equalsIgnoreCase(sArr[pointer2]))) {
+                return false;
+            }
+            pointer1++;
+            pointer2--;
+        }
+        return true;
+    }
+```
+
+Also used regex to check if it is alphanumeric, to check if something is alphanumeric ->
+
+```java
+      String toCheck = "1racecar1";
+      boolean isalphanumeric = toCheck.matches("[A-Za-z0-9]"); // true
+      boolean nonalphanumeric = "-&&".matches("[A-Za-z0-9]"); // false
+```
+
+## Leetcode Exercis 11 (Dif: Easy)
+
+![Problem 10](resources/Leetcode-Problem11.png)
+
+Used a two pointer approach and a sliding window, to check all posible outcomes in the window
+
+The Code:
+
+```java
+public int maxProfit(int[] prices) {
+        int buy = prices[0];
+        int sell = prices[0];
+        int maxProf = sell - buy;
+
+        for (int price : prices) {
+            if (price < buy) {
+                buy = price;
+                sell = price;
+                if ((sell - buy) > maxProf) {
+                    maxProf = sell - buy;
+                }
+            }
+            if (price > sell) {
+                sell = price;
+                if ((sell - buy) > maxProf) {
+                    maxProf = sell - buy;
+                }
+            }
+        }
+
+        return maxProf;
+    }
+```
+````
