@@ -19,12 +19,14 @@
 Typische Szenarien:
 
 ```java
+
 // Sortiertes Array + Target finden
 int[] arr = [1,2,3,4,5]; target = 6
 // → Two Pointer von beiden Seiten
 
 // String von außen nach innen prüfen
 "racecar" → left=0, right=6, bewegen sich zur Mitte
+
 ```
 
 ## Sliding Window
@@ -49,3 +51,15 @@ int[] arr = [1,2,3,4,5]; target = 6
 "Longest substring without repeating characters"
 ```
 
+When working with String, just adding a element to a string takes linear time
+
+Example:
+
+```java
+
+String s = "ab"
+s += "c"
+
+```
+
+but appending to a list takes constant time. Using lists instead of strings enables a more effiecient solution with O(n) time complexity.
