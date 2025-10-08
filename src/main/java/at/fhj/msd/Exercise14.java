@@ -1,6 +1,7 @@
 package at.fhj.msd;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Exercise 14: Roman to Integer Roman numerals are represented by seven
@@ -26,7 +27,8 @@ public class Exercise14 {
     public int romanToInt(String s) {
 
         // Map Roman numeral characters to their integer values
-        HashMap<Character, Integer> Symbol = new HashMap<>();
+        Map<Character, Integer> Symbol = new HashMap<>();
+
         int result = 0;
         Symbol.put('I', 1);
         Symbol.put('V', 5);
@@ -44,9 +46,7 @@ public class Exercise14 {
             // - I before V or X (4 or 9)
             // - X before L or C (40 or 90)
             // - C before D or M (400 or 900)
-            if ((i < s.length() - 1) && ((s.charAt(i) == 'I' && (s.charAt(i + 1) == 'V' || s.charAt(i + 1) == 'X'))
-                    || (s.charAt(i) == 'X' && (s.charAt(i + 1) == 'L' || s.charAt(i + 1) == 'C'))
-                    || (s.charAt(i) == 'C' && (s.charAt(i + 1) == 'D' || s.charAt(i + 1) == 'M')))) {
+            if ((i < s.length() - 1) && (Symbol.get(s.charAt(i)) < Symbol.get(s.charAt(i + 1)))) {
                 // Subtract when smaller numeral comes before larger one
                 result -= (int) (Symbol.get(s.charAt(i)));
             } else {
@@ -59,4 +59,3 @@ public class Exercise14 {
         return result;
     }
 }
-

@@ -846,4 +846,98 @@ public String mergeAlternately(String word1, String word2) {
 
 **Time Complexity: O(n)**
 
+## Leetcode Exercise 15 (Dif: Easy)
+
+392. Is Subsequence
+
+> Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+> A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+> Example 1:
+
+> Input: s = "abc", t = "ahbgdc"
+> Output: true
+
+> Example 2:
+
+> Input: s = "axc", t = "ahbgdc"
+> Output: false
+
+> Constraints:
+
+> 0 <= s.length <= 100
+> 0 <= t.length <= 10^4
+> s and t consist only of lowercase English letters.
+
+>>Code
+
+```java
+    public boolean isSubsequence(String s, String t) {
+        int i = 0;
+        StringBuilder sRemover = new StringBuilder(s);
+        while (i < t.length() && s.length() != 0) {
+            if (s.charAt(0) == t.charAt(i)) {
+                sRemover.deleteCharAt(0);
+                s = sRemover.toString();
+            }
+            i++;
+        }
+        return s.length() == 0;
+    }
+```
+
+**Time Complexity: O(n)**
+
+## Leetcode Exercise 16 (Dif: Easy)
+
+14. Longest Common Prefix
+
+> Write a function to find the longest common prefix string amongst an array of strings.
+> If there is no common prefix, return an empty string "".
+
+> Example 1:
+
+> Input: strs = ["flower","flow","flight"]
+> Output: "fl"
+
+> Example 2:
+
+> Input: strs = ["dog","racecar","car"]
+> Output: ""
+> Explanation: There is no common prefix among the input strings.
+
+> Constraints:
+
+> 1 <= strs.length <= 200
+> 0 <= strs[i].length <= 200
+> strs[i] consists of only lowercase English letters.
+
+>>Code
+
+```java
+    public String longestCommonPrefix(String[] strs) {
+        String word = strs[0];
+        for (String s : strs) {
+            int i = 0;
+            if (s.isEmpty()) {
+                return "";
+            }
+            while (i < word.length()) {
+                try {
+                    if (word.charAt(i) != s.charAt(i)) {
+                        word = word.substring(0, i);
+                    }
+                } catch (Exception e) {
+                    word = word.substring(0, i);
+                }
+                i++;
+            }
+        }
+        return word;
+    }
+```
+
+**Time Complexity: O(S)** where S is the sum of all characters in all strings
+
 
