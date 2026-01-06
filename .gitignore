@@ -1,1 +1,5 @@
-target/
+.github
+.vscode
+Claude.md
+target
+.vscode
