@@ -7,7 +7,7 @@ package at.fhj.msd;
  */
 public class Exercise_8_sliding_Window {
 
-      private String slinding_Window = "";
+      private StringBuilder slinding_Window = new StringBuilder("");
 
       /**
        * Finds the first occurrence of needle in haystack using sliding window technique.
@@ -25,7 +25,7 @@ public class Exercise_8_sliding_Window {
             // Initialize the sliding window with first needle.length() characters
             for (int i=0; i < needle.length(); i++)
             {
-                  slinding_Window += haystack.charAt(i);
+                  slinding_Window.append(haystack.charAt(i));
 
             }
 
@@ -34,24 +34,20 @@ public class Exercise_8_sliding_Window {
             for (int i = 0; i < haystack.length(); i++)
             {
                   // Check if current window matches needle
-                  if (slinding_Window.equals(needle)) return i;
+                  if (slinding_Window.toString().equals(needle)) return i;
                   else{
                         try {
                             // Add next character to window
-                            slinding_Window += haystack.charAt(i + needle.length());
+                            slinding_Window.append(haystack.charAt(i + needle.length()));
                             // Remove first character from window
-                            slinding_Window = slinding_Window.substring(1);
+                            slinding_Window = new StringBuilder(slinding_Window.substring(1));
                         } catch (Exception e) {
                               // Reached end of haystack without finding needle
                               return -1;
                         }
 
-
-
-
                   }
             }
-
             return -1;
       }
 
