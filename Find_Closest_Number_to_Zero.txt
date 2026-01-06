@@ -1,0 +1,13 @@
+class Find_Closest_Number_to_Zero {
+  public int findClosestNumber(int[] nums) {
+        int temp = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (Math.abs(nums[i]) < Math.abs(temp) || (Math.abs(nums[i]) == Math.abs(temp) && nums[i] > temp )) {
+                temp =  nums[i];
+            }
+        }
+
+        return temp;
+    }
+
+}
