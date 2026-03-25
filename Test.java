@@ -1,8 +1,8 @@
 public class Test {
 
     public static void main(String[] args) {
-        summary_ranges sr = new summary_ranges();
-        int[] nums = {0,1,2,4,5,7};
-        System.out.println(sr.summaryRanges(nums));
+        RemoveDuplicates removeDuplicates = new RemoveDuplicates();
+        int[] nums = {1,2,3};
+        System.out.println(removeDuplicates.removeDuplicates(nums));
     }
 }
