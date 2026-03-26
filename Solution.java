@@ -3,6 +3,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
+
+    public int findClosestNumber(int[] nums) {
+        int ans = nums[0];
+        for (int num : nums) {
+            if (Math.abs(num) < Math.abs(ans) || (Math.abs(num) == Math.abs(ans) && num > ans)) {
+                ans = Math.abs(num);
+            }
+        }
+        return ans;
+    }
+
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int x = m - 1, y = n - 1;
 
