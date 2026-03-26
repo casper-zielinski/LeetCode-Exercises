@@ -1,8 +1,8 @@
 public class Test {
 
     public static void main(String[] args) {
-        RemoveDuplicates removeDuplicates = new RemoveDuplicates();
-        int[] nums = {1,2,3};
-        System.out.println(removeDuplicates.removeDuplicates(nums));
+        Solution solution = new Solution();
+        int[] nums = {3,3};
+        System.out.println(solution.removeElement(nums, 5));
     }
 }
