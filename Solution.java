@@ -4,6 +4,30 @@ import java.util.List;
 
 public class Solution {
 
+    public int maxProfit(int[] prices) {
+        int ans = 0;
+        int min = prices[0], max = prices[0];
+        int n = prices.length;
+
+        for (int i = 0; i < n; i++) {
+
+            if (prices[i] < min) {
+                min = prices[i];
+                max = min;
+            } else if (prices[i] > max) {
+                max = prices[i];
+            }
+
+            if (i == n - 1 || prices[i + 1] < max) {
+                ans += max - min;
+                min = prices[i];
+            }
+
+        }
+
+        return ans;
+    }
+
     public int findClosestNumber(int[] nums) {
         int ans = nums[0];
         for (int num : nums) {
@@ -12,39 +36,6 @@ public class Solution {
             }
         }
         return ans;
-    }
-
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int x = m - 1, y = n - 1;
-
-        for (int z = m + n - 1; z >= 0; z--) {
-            if (x < 0) {
-                nums1[z] = nums2[y--];
-            } else if (y < 0) {
-                break;
-            } else if (nums1[x] > nums2[y]) {
-                nums1[z] = nums1[x--];
-            } else {
-                nums1[z] = nums2[y--];
-            }
-        }
-    }
-
-    public int removeElement(int[] nums, int val) {
-        int i = 0;
-        int n = nums.length;
-
-        while (i < n) {
-            if (nums[i] == val) {
-                nums[i] = nums[n - 1];
-                n--;
-            } else {
-                i++;
-            }
-        }
-
-        System.out.println(Arrays.toString(nums));
-        return n;
     }
 
     public List<String> summaryRanges(int[] nums) {
