@@ -22,7 +22,6 @@ public class Solution {
                 ans += max - min;
                 min = prices[i];
             }
-
         }
 
         return ans;
@@ -73,5 +72,20 @@ public class Solution {
         }
 
         return j;
+    }
+
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder sr = new StringBuilder();
+        int maxLength = Math.max(word1.length(), word2.length());
+        for (int i = 0; i < maxLength; i++) {
+            if (i < word1.length()) {
+                sr.append(word1.charAt(i));
+            }
+
+            if (i < word2.length()) {
+                sr.append(word2.charAt(i));
+            }
+        }
+        return sr.toString();
     }
 }
