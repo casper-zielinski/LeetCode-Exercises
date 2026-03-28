@@ -1,8 +1,28 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
+
+    public int romanToInt(String s) {
+        Map<String, Integer> roman = new HashMap<>();
+        roman.put("I", 1);
+        roman.put("V", 5);
+        roman.put("X", 10);
+        roman.put("L", 50);
+        roman.put("C", 100);
+        roman.put("D", 500);
+        roman.put("M", 1000);
+        int ans = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (i < s.length() - 1 && roman.get(String.valueOf(s.charAt(i + 1))) > roman.get(String.valueOf(s.charAt(i)))) {
+                ans -= roman.get(String.valueOf(s.charAt(i)));
+            } else {
+                ans += roman.get(String.valueOf(s.charAt(i)));
+            }
+        }
+
+        return ans;
+    }
 
     public int maxProfit(int[] prices) {
         int ans = 0;
