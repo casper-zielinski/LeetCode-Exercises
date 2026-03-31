@@ -1,6 +1,29 @@
 import java.util.*;
 
 public class Solution {
+    public int removeDuplicates2(int[] nums) {
+        int i = 0;
+        int j = nums.length;
+        while (i < j) {
+            if (i < j - 2 && nums[i] == nums[i + 1] && nums[i] == nums[i + 2]) {
+                swap(nums, nums[i + 2], i + 2);
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return j;
+    }
+
+    public void swap(int[] nums, int num, int index) {
+        int i = index;
+        while (i < nums.length - 1) {
+            int temp = nums[i + 1];
+            nums[i + 1] = num;
+            nums[i] = temp;
+            i++;
+        }
+    }
 
     public int romanToInt(String s) {
         Map<String, Integer> roman = new HashMap<>();
