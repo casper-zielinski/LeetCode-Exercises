@@ -1,6 +1,28 @@
 import java.util.*;
 
 public class Solution {
+
+    public void sortColors(int[] nums) {
+        int n = nums.length;
+        int momentary = 0;
+        int j = 0;
+        int i = 0;
+
+        while (momentary < 3) {
+            while (i < n) {
+                if (nums[i] == momentary) {
+                    int temp = nums[j];
+                    nums[j] = nums[i];
+                    nums[i] = temp;
+                    j++;
+                }
+                i++;
+            }
+            i = 0;
+            momentary++;
+        }
+    }
+
     public int removeDuplicates2(int[] nums) {
         int i = 0;
         int j = nums.length;
