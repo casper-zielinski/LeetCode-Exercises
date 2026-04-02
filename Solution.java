@@ -2,6 +2,32 @@ import java.util.*;
 
 public class Solution {
 
+    public int removeDuplicates3(int[] nums) {
+        int i = 0;
+        int j = 1;
+        final int n = nums.length;
+
+        if (n == 0 || n == 1) {
+            return n;
+        }
+
+        while (i < n) {
+            while (i < n - 1 && nums[i] == nums[i + 1]) {
+                i++;
+            }
+
+            if (i < n - 1) {
+                nums[j] = nums[i + 1];
+                j++;
+                i++;
+            } else {
+                break;
+            }
+        }
+
+        return j;
+    }
+
     public void sortColors(int[] nums) {
         int n = nums.length;
         int momentary = 0;
