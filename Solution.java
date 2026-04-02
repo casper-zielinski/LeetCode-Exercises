@@ -2,7 +2,27 @@ import java.util.*;
 
 public class Solution {
 
-    public int removeDuplicates3(int[] nums) {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int x = m - 1;
+        int y = n - 1;
+        int z = nums1.length - 1;
+
+        while (z > x) {
+            if (y < 0) {
+                break;
+            } else if (x < 0 || nums2[y] > nums1[x] || nums2[y] == nums1[x]) {
+                nums1[z] = nums2[y];
+                y--;
+                z--;
+            } else if (nums1[x] > nums2[y]) {
+                nums1[z] = nums1[x];
+                x--;
+                z--;
+            }
+        }
+    }
+
+    public int removeDuplicates(int[] nums) {
         int i = 0;
         int j = 1;
         final int n = nums.length;
@@ -148,21 +168,6 @@ public class Solution {
         }
 
         return res;
-    }
-
-    public int removeDuplicates(int[] nums) {
-        int j = 1;
-        int i = 1;
-        while (nums.length > i) {
-            if (nums[i - 1] != nums[i]) {
-                nums[j] = nums[i];
-                ++j;
-            }
-
-            i++;
-        }
-
-        return j;
     }
 
     public String mergeAlternately(String word1, String word2) {
