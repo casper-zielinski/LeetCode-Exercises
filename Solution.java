@@ -4,40 +4,24 @@ public class Solution {
 
     public int[] productExceptSelf(int[] nums) {
         int[] ans = new int[nums.length];
-        int counter = 1;
-        int nullCounter = 0;
+        int[] prefix = new int[nums.length];
+        prefix[0] = 1;
+        int[] suffix = new int[nums.length];
+        suffix[nums.length - 1] = 1;
 
-        for (int num : nums) {
-            if (num == 0) {
-                ++nullCounter;
-            }
-
-            if (nullCounter == 2) {
-                counter = 0;
-                break;
-            } else if (nullCounter != 1 || num != 0) {
-                counter *= num;
-            } else {
-                continue;
-            }
-
+        for (int i = 1; i < nums.length; i++) {
+            prefix[i] = prefix[i - 1] * nums[i - 1];
         }
 
-        for (int i = 0; i < ans.length; i++) {
-            if (nullCounter == 1) {
-                ans[i] = nums[i] == 0 ? counter : 0;
-            } else if (nullCounter > 1) {
-                ans[i] = 0;
-            } else {
-                ans[i] = counter / nums[i];
-            }
+        for (int i = nums.length - 2; i > 0; i--) {
+            suffix[i] = suffix[i + 1] * nums[i + 1];
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            ans[i] = prefix[i] * suffix[i];
         }
 
         return ans;
-    }
-
-    public void multiply() {
-
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
