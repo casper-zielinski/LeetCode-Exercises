@@ -3,7 +3,7 @@ import java.util.*;
 public class Solution {
 
     public int[] productExceptSelf(int[] nums) {
-        int[] ans = Arrays.stream(nums).map((val) -> 1).toArray();
+        int[] ans = new int[nums.length];
         int counter = 1;
         int nullCounter = 0;
 
