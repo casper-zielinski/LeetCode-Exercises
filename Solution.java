@@ -2,6 +2,44 @@ import java.util.*;
 
 public class Solution {
 
+    public int[] productExceptSelf(int[] nums) {
+        int[] ans = Arrays.stream(nums).map((val) -> 1).toArray();
+        int counter = 1;
+        int nullCounter = 0;
+
+        for (int num : nums) {
+            if (num == 0) {
+                ++nullCounter;
+            }
+
+            if (nullCounter == 2) {
+                counter = 0;
+                break;
+            } else if (nullCounter != 1 || num != 0) {
+                counter *= num;
+            } else {
+                continue;
+            }
+
+        }
+
+        for (int i = 0; i < ans.length; i++) {
+            if (nullCounter == 1) {
+                ans[i] = nums[i] == 0 ? counter : 0;
+            } else if (nullCounter > 1) {
+                ans[i] = 0;
+            } else {
+                ans[i] = counter / nums[i];
+            }
+        }
+
+        return ans;
+    }
+
+    public void multiply() {
+
+    }
+
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int x = m - 1;
         int y = n - 1;
