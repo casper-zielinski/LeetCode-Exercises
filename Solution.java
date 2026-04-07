@@ -2,26 +2,27 @@ import java.util.*;
 
 public class Solution {
 
-    public int[] productExceptSelf(int[] nums) {
-        int[] ans = new int[nums.length];
-        int[] prefix = new int[nums.length];
-        prefix[0] = 1;
-        int[] suffix = new int[nums.length];
-        suffix[nums.length - 1] = 1;
+    public int hIndex(int[] citations) {
+        int h = 1;
+        int n = citations.length;
+        for (int i = 0; i < n; i++) {
+            int page_number = 0;
+            int j = 0;
+            while (j < n && h > page_number) {
+                if (h <= citations[j]) {
+                    page_number++;
+                }
+                j++;
+            }
 
-        for (int i = 1; i < nums.length; i++) {
-            prefix[i] = prefix[i - 1] * nums[i - 1];
+            if (h > page_number) {
+                return h - 1;
+            }
+
+            h++;
         }
 
-        for (int i = nums.length - 2; i > 0; i--) {
-            suffix[i] = suffix[i + 1] * nums[i + 1];
-        }
-
-        for (int i = 0; i < nums.length; i++) {
-            ans[i] = prefix[i] * suffix[i];
-        }
-
-        return ans;
+        return h - 1;
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
