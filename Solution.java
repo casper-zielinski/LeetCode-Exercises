@@ -3,18 +3,25 @@ import java.util.*;
 public class Solution {
 
     public int fib(int n) {
-        Map<Integer, Integer> memo = new HashMap<>();
-        memo.put(0, 0);
-        memo.put(1,1);
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            int[] memo = new int[n + 1];
+            memo[0] = 0;
+            memo[1] = 1;
 
-        int start = 2;
 
-        while (start < n + 1) {
-            memo.put(start, memo.get(start-1) + memo.get(start-2));
-            start++;
+            int i = 2;
+            while (i <= n) {
+                memo[i] = memo[i - 1] + memo[i - 2];
+                i++;
+            }
+
+
+            return memo[n];
         }
-
-        return memo.get(n);
     }
 
     public int hIndex(int[] citations) {
