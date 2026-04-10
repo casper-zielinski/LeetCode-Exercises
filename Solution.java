@@ -2,6 +2,21 @@ import java.util.*;
 
 public class Solution {
 
+    public int fib(int n) {
+        Map<Integer, Integer> memo = new HashMap<>();
+        memo.put(0, 0);
+        memo.put(1,1);
+
+        int start = 2;
+
+        while (start < n + 1) {
+            memo.put(start, memo.get(start-1) + memo.get(start-2));
+            start++;
+        }
+
+        return memo.get(n);
+    }
+
     public int hIndex(int[] citations) {
         int h = 1;
         int n = citations.length;
