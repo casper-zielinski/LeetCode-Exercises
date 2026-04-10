@@ -2,25 +2,15 @@ import java.util.*;
 
 public class Solution {
 
+    Map<Integer, Integer> memo = new HashMap<>();
     public int fib(int n) {
-        if (n == 0) {
-            return 0;
-        } else if (n == 1) {
-            return 1;
+        if (n <= 1) {
+            return n;
         } else {
-            int[] memo = new int[n + 1];
-            memo[0] = 0;
-            memo[1] = 1;
-
-
-            int i = 2;
-            while (i <= n) {
-                memo[i] = memo[i - 1] + memo[i - 2];
-                i++;
-            }
-
-
-            return memo[n];
+            if (memo.containsKey(n)) return memo.get(n);
+            int result = fib(n-1) + fib(n-2);
+            memo.put(n, result);
+            return result;
         }
     }
 
