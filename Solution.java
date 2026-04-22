@@ -2,13 +2,31 @@ import java.util.*;
 
 public class Solution {
 
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0) return new int[0][0];
+
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        List<int[]> merged = new ArrayList<>();
+
+        for (int[] interval : intervals) {
+            if (merged.isEmpty() || merged.getLast()[1] < interval[0]) {
+                merged.add(interval);
+            } else {
+                merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
+            }
+        }
+
+        return merged.toArray(new int[merged.size()][]);
+    }
+
     Map<Integer, Integer> memo = new HashMap<>();
+
     public int fib(int n) {
         if (n <= 1) {
             return n;
         } else {
             if (memo.containsKey(n)) return memo.get(n);
-            int result = fib(n-1) + fib(n-2);
+            int result = fib(n - 1) + fib(n - 2);
             memo.put(n, result);
             return result;
         }
