@@ -2,6 +2,34 @@ import java.util.*;
 
 public class Solution {
 
+    public String convert(String s, int numRows) {
+        if (s.length() <= 2 || numRows == 1 || numRows >= s.length()) {
+            return s;
+        }
+
+        List<StringBuilder> rows = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            rows.add(new StringBuilder());
+        }
+
+        int i = 0;
+        boolean goingDown = false;
+
+        for (char c : s.toCharArray()) {
+            rows.get(i).append(c);
+            if (i == 0 || i == numRows - 1) goingDown = !goingDown;
+            i += goingDown ? 1 : -1;
+        }
+
+        StringBuilder sr = new StringBuilder();
+        for (StringBuilder row : rows) {
+            sr.append(row);
+        }
+
+
+        return sr.toString();
+    }
+
 
     public List<Integer> spiralOrder(int[][] matrix) {
         int topWall = 0;
