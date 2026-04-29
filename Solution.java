@@ -2,6 +2,54 @@ import java.util.*;
 
 public class Solution {
 
+
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int topWall = 0;
+        int bottomWall = matrix.length - 1;
+        int leftWall = 0;
+        int rightWall = matrix[0].length - 1;
+        int s = matrix.length * matrix[0].length;
+
+
+        List<Integer> res = new ArrayList<>();
+
+        while (res.size() < s) {
+
+            if (topWall <= bottomWall) {
+                for (int i = leftWall; i < rightWall + 1; i++) {
+                    res.add(matrix[topWall][i]);
+                }
+
+                topWall++;
+            }
+
+            if (rightWall >= leftWall) {
+                for (int i = topWall; i < bottomWall + 1; i++) {
+                    res.add(matrix[i][rightWall]);
+                }
+
+                rightWall--;
+            }
+
+            if (bottomWall >= topWall) {
+                for (int i = rightWall; i > leftWall - 1; i--) {
+                    res.add(matrix[bottomWall][i]);
+                }
+
+                bottomWall--;
+            }
+
+            if (leftWall <= rightWall) {
+                for (int i = bottomWall; i > topWall - 1; i--) {
+                    res.add(matrix[i][leftWall]);
+                }
+
+                leftWall++;
+            }
+        }
+        return res;
+    }
+
     public int[][] merge(int[][] intervals) {
         if (intervals.length == 0) return new int[0][0];
 
