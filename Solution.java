@@ -2,6 +2,34 @@ import java.util.*;
 
 public class Solution {
 
+    public void rotate(int[][] matrix) {
+        if (matrix.length == 1) {
+            return;
+        }
+
+        Map<String, Integer> bucket = new HashMap<>();
+        int i = 0; //setter / getter
+        int j = matrix.length - 1; // getter
+        int c = 0; // setter
+        while (i < matrix.length) {
+            while (j >= 0) {
+                bucket.put("%d,%d".formatted(i, c), matrix[i][c]);
+
+                if (bucket.containsKey("%d,%d".formatted(j, i))) {
+                    matrix[i][c] = bucket.get("%d,%d".formatted(j, i));
+                } else {
+                    matrix[i][c] = matrix[j][i];
+                }
+
+                j--;
+                c++;
+            }
+            c = 0;
+            i++;
+            j = matrix.length - 1;
+        }
+    }
+
     public String convert(String s, int numRows) {
         if (s.length() <= 2 || numRows == 1 || numRows >= s.length()) {
             return s;
