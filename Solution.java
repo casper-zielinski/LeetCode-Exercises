@@ -3,30 +3,29 @@ import java.util.*;
 public class Solution {
 
     public void rotate(int[][] matrix) {
-        if (matrix.length == 1) {
+        int n = matrix.length;
+
+        if (n == 1) {
             return;
         }
 
-        Map<String, Integer> bucket = new HashMap<>();
-        int i = 0; //setter / getter
-        int j = matrix.length - 1; // getter
-        int c = 0; // setter
-        while (i < matrix.length) {
-            while (j >= 0) {
-                bucket.put("%d,%d".formatted(i, c), matrix[i][c]);
-
-                if (bucket.containsKey("%d,%d".formatted(j, i))) {
-                    matrix[i][c] = bucket.get("%d,%d".formatted(j, i));
-                } else {
-                    matrix[i][c] = matrix[j][i];
-                }
-
-                j--;
-                c++;
+        // Transpose
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
-            c = 0;
-            i++;
-            j = matrix.length - 1;
+        }
+
+        //Reflection
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+               int left = matrix[i][j];
+               int right = matrix[i][(n - 1) - j];
+               matrix[i][j] = right;
+               matrix[i][(n - 1) - j] = left;
+            }
         }
     }
 
