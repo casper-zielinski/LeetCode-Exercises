@@ -6,18 +6,18 @@ public class Solution {
         if (strs.length == 1) {
             return strs[0];
         }
-        StringBuilder sr = new StringBuilder(strs[0]);
+        String sr = strs[0];
 
         for (String str : strs) {
             for (int i = 0; i < sr.length(); i++) {
-                if (i > str.length() - 1 || sr.toString().charAt(i) != str.charAt(i)) {
-                    sr.delete(i, sr.length());
+                if (i > str.length() - 1 || sr.charAt(i) != str.charAt(i)) {
+                    sr = sr.substring(0);
                     break;
                 }
             }
         }
 
-        return sr.toString();
+        return sr;
     }
 
     public void rotate(int[][] matrix) {
