@@ -2,6 +2,24 @@ import java.util.*;
 
 public class Solution {
 
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 1) {
+            return strs[0];
+        }
+        StringBuilder sr = new StringBuilder(strs[0]);
+
+        for (String str : strs) {
+            for (int i = 0; i < sr.length(); i++) {
+                if (i > str.length() - 1 || sr.toString().charAt(i) != str.charAt(i)) {
+                    sr.delete(i, sr.length());
+                    break;
+                }
+            }
+        }
+
+        return sr.toString();
+    }
+
     public void rotate(int[][] matrix) {
         int n = matrix.length;
 
@@ -21,10 +39,10 @@ public class Solution {
         //Reflection
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
-               int left = matrix[i][j];
-               int right = matrix[i][(n - 1) - j];
-               matrix[i][j] = right;
-               matrix[i][(n - 1) - j] = left;
+                int left = matrix[i][j];
+                int right = matrix[i][(n - 1) - j];
+                matrix[i][j] = right;
+                matrix[i][(n - 1) - j] = left;
             }
         }
     }
