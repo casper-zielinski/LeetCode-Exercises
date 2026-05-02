@@ -20,6 +20,20 @@ public class Solution {
         return ans;
     }
 
+    public boolean containsDuplicate(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num: nums) {
+            if (map.containsKey(num)) {
+                return true;
+            }
+
+            map.put(num, num);
+        }
+
+        return false;
+    }
+
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
 
