@@ -2,13 +2,43 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean canConstruct(String ransomNote, String magazine) {
+        if (magazine.length() < ransomNote.length()) {
+            return false;
+        }
+
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < magazine.length(); i++) {
+            String curr = String.valueOf(magazine.charAt(i));
+            if (map.containsKey(curr)) {
+                int count = map.get(curr) + 1;
+                map.replace(curr, count);
+            } else {
+                map.put(curr, 1);
+            }
+        }
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            String curr = String.valueOf(ransomNote.charAt(i));
+            if (!map.containsKey(curr) || map.get(curr) <= 0) {
+                return false;
+            } else {
+                int count = map.get(curr) - 1;
+                map.replace(curr, count);
+            }
+        }
+
+        return true;
+    }
+
     public int numJewelsInStones(String jewels, String stones) {
         int ans = 0;
         Map<String, String> map = new HashMap<>();
 
         for (int i = 0; i < jewels.length(); i++) {
             String j = String.valueOf(jewels.charAt(i));
-            map.put(j ,j);
+            map.put(j, j);
         }
 
         for (int i = 0; i < stones.length(); i++) {
@@ -23,7 +53,7 @@ public class Solution {
     public boolean containsDuplicate(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int num: nums) {
+        for (int num : nums) {
             if (map.containsKey(num)) {
                 return true;
             }
