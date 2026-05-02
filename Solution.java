@@ -2,6 +2,23 @@ import java.util.*;
 
 public class Solution {
 
+    public int numJewelsInStones(String jewels, String stones) {
+        int ans = 0;
+        Map<String, String> map = new HashMap<>();
+
+        for (int i = 0; i < jewels.length(); i++) {
+            String j = String.valueOf(jewels.charAt(i));
+            map.put(j ,j);
+        }
+
+        for (int i = 0; i < stones.length(); i++) {
+            if (map.containsKey(String.valueOf(stones.charAt(i)))) {
+                ans++;
+            }
+        }
+
+        return ans;
+    }
 
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
