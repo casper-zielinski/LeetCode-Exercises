@@ -2,6 +2,20 @@ import java.util.*;
 
 public class Solution {
 
+
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{map.get(target - nums[i]), i};
+            }
+            map.put(nums[i], i);
+        }
+
+        return null;
+    }
+
     public String longestCommonPrefix(String[] strs) {
         if (strs.length == 1) {
             return strs[0];
@@ -11,7 +25,7 @@ public class Solution {
         for (String str : strs) {
             for (int i = 0; i < sr.length(); i++) {
                 if (i > str.length() - 1 || sr.charAt(i) != str.charAt(i)) {
-                    sr = sr.substring(0);
+                    sr = sr.substring(0, i);
                     break;
                 }
             }
