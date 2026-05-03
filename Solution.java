@@ -2,6 +2,28 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] sWords = new int[173];
+
+        for (char sChar : s.toCharArray()) {
+            sWords[sChar]++;
+        }
+
+        for (char tChar : t.toCharArray()) {
+            if (sWords[tChar] == 0) {
+                return false;
+            } else {
+                sWords[tChar]--;
+            }
+        }
+
+        return true;
+    }
+
     public boolean canConstruct(String ransomNote, String magazine) {
         if (magazine.length() < ransomNote.length()) {
             return false;
