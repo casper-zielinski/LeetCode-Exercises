@@ -7,17 +7,17 @@ public class Solution {
             return false;
         }
 
-        int[] sWords = new int[173];
+        int[] sWords = new int[26];
 
         for (char sChar : s.toCharArray()) {
-            sWords[sChar]++;
+            sWords[sChar - 'a']++;
         }
 
         for (char tChar : t.toCharArray()) {
-            if (sWords[tChar] == 0) {
+            if (sWords[tChar - 'a'] == 0) {
                 return false;
             } else {
-                sWords[tChar]--;
+                sWords[tChar - 'a']--;
             }
         }
 
