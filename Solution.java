@@ -2,6 +2,37 @@ import java.util.*;
 
 public class Solution {
 
+    public int maxNumberOfBalloons(String text) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("b", 0);
+        map.put("a", 0);
+        map.put("l", 0);
+        map.put("o", 0);
+        map.put("n", 0);
+
+        for (int i = 0; i < text.length(); i++) {
+            String curr = String.valueOf(text.charAt(i));
+            if (map.containsKey(curr)) {
+                int count = map.get(curr);
+                map.replace(curr, count + 1);
+            }
+        }
+
+        int ans = Integer.MAX_VALUE;
+
+        for (Map.Entry<String,Integer> entry : map.entrySet()) {
+            int count;
+            if (entry.getKey().equals("l") || entry.getKey().equals("o")) {
+                count = entry.getValue() / 2;
+            } else {
+                count = entry.getValue();
+            }
+            ans = Math.min(ans, count);
+        }
+
+        return ans;
+    }
+
     public boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) {
             return false;
