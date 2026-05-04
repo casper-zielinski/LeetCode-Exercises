@@ -1,6 +1,31 @@
 import java.util.*;
 
 public class Solution {
+    private Map<Integer, Integer> dp = new HashMap<>();
+
+    public int climbStairs(int n) {
+        if (n <= 3) {
+            return n;
+        }
+
+        int x;
+        int y;
+        if (dp.containsKey(n - 1)) {
+            x = dp.get(n - 1);
+        } else {
+            x = climbStairs(n - 1);
+            dp.put(n - 1, x);
+        }
+
+        if (dp.containsKey(n - 2)) {
+            y = dp.get(n - 2);
+        } else {
+            y = climbStairs(n - 2);
+            dp.put(n - 2, y);
+        }
+
+        return x + y;
+    }
 
     public int maxNumberOfBalloons(String text) {
         Map<String, Integer> map = new HashMap<>();
@@ -20,7 +45,7 @@ public class Solution {
 
         int ans = Integer.MAX_VALUE;
 
-        for (Map.Entry<String,Integer> entry : map.entrySet()) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             int count;
             if (entry.getKey().equals("l") || entry.getKey().equals("o")) {
                 count = entry.getValue() / 2;
