@@ -1,6 +1,62 @@
 import java.util.*;
 
 public class Solution {
+
+    public boolean isValidSudoku(char[][] board) {
+        Set<Character> row = new HashSet<>();
+        Set<Character> col = new HashSet<>();
+        Set<Character> box = new HashSet<>();
+
+        int i = 0;
+        int j = 0;
+
+        while (i < 9) {
+            while (j < 9) {
+                Character toRow = board[i][j];
+                Character toColumn = board[j][i];
+
+                if (!toRow.equals('.')) {
+                    if (!row.add(toRow)) {
+                        return false;
+                    }
+                }
+
+                if (!toColumn.equals('.')) {
+                    if (!col.add(toColumn)) {
+                        return false;
+                    }
+                }
+
+                j++;
+            }
+
+            row.clear();
+            col.clear();
+            i++;
+            j = 0;
+        }
+
+        int[][] starts = {{0, 0}, {0, 3}, {0, 6},
+                {3, 0}, {3, 3}, {3, 6},
+                {6, 0}, {6, 3}, {6, 6}};
+
+        Set<Character> set = new HashSet<>();
+        for (int[] start : starts) {
+
+            for (int rowB = start[0]; rowB < start[0] + 3; rowB++) {
+                for (int colB = start[1]; colB < start[1] + 3; colB++) {
+                    char item = board[rowB][colB];
+                    if (item != '.' && !set.add(item)) {
+                        return false;
+                    }
+                }
+            }
+            set.clear();
+        }
+
+        return true;
+    }
+
     private Map<Integer, Integer> dp = new HashMap<>();
 
     public int climbStairs(int n) {
