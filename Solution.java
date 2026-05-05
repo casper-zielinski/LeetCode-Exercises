@@ -11,9 +11,11 @@ public class Solution {
         int j = 0;
 
         while (i < 9) {
+
             while (j < 9) {
                 Character toRow = board[i][j];
                 Character toColumn = board[j][i];
+                Character toBox = board[3 * (i / 3) + (j / 3)][3 * (i % 3) + (j % 3)];
 
                 if (!toRow.equals('.')) {
                     if (!row.add(toRow)) {
@@ -27,31 +29,21 @@ public class Solution {
                     }
                 }
 
+
+                if (!toBox.equals('.')) {
+                    if (!box.add(toBox)) {
+                        return false;
+                    }
+                }
+
                 j++;
             }
 
             row.clear();
             col.clear();
+            box.clear();
             i++;
             j = 0;
-        }
-
-        int[][] starts = {{0, 0}, {0, 3}, {0, 6},
-                {3, 0}, {3, 3}, {3, 6},
-                {6, 0}, {6, 3}, {6, 6}};
-
-        Set<Character> set = new HashSet<>();
-        for (int[] start : starts) {
-
-            for (int rowB = start[0]; rowB < start[0] + 3; rowB++) {
-                for (int colB = start[1]; colB < start[1] + 3; colB++) {
-                    char item = board[rowB][colB];
-                    if (item != '.' && !set.add(item)) {
-                        return false;
-                    }
-                }
-            }
-            set.clear();
         }
 
         return true;
