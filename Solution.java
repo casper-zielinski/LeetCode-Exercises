@@ -2,6 +2,41 @@ import java.util.*;
 
 public class Solution {
 
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        List<List<String>> mergedList = new ArrayList<>();
+
+        if (strs.length == 1) {
+            List<String> stringList = new ArrayList<>();
+            stringList.add(strs[0]);
+            mergedList.add(stringList);
+            return mergedList;
+        }
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
+            char[] letters = s.toCharArray();
+            Arrays.sort(letters);
+            String sortedString = new String(letters);
+            if (map.containsKey(sortedString)) {
+                List<String> stringList = map.get(sortedString);
+                stringList.add(s);
+                map.replace(sortedString, stringList);
+            } else {
+                List<String> stringList = new ArrayList<>();
+                stringList.add(s);
+                map.put(sortedString, stringList);
+            }
+        }
+
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            mergedList.add(entry.getValue());
+        }
+
+        return mergedList;
+    }
+
     public boolean isValidSudoku(char[][] board) {
         Set<Character> row = new HashSet<>();
         Set<Character> col = new HashSet<>();
