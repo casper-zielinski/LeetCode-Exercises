@@ -2,6 +2,36 @@ import java.util.*;
 
 public class Solution {
 
+    public int majorityElement(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
+        }
+
+        int appearences = nums.length / 2;
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            if (map.containsKey(num)) {
+                int c = map.get(num);
+
+                if (c > appearences) {
+                    return num;
+                }
+
+                map.replace(num, ++c);
+            } else {
+                map.put(num, 1);
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > appearences) return entry.getKey();
+        }
+
+        return 0;
+    }
+
     public List<List<String>> groupAnagrams(String[] strs) {
 
         List<List<String>> mergedList = new ArrayList<>();
