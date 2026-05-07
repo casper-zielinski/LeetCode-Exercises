@@ -2,6 +2,48 @@ import java.util.*;
 
 public class Solution {
 
+    public int longestConsecutive(int[] nums) {
+        int ans = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> toRemove = new HashMap<>();
+
+        for (int num : nums) {
+            map.put(num, num);
+            toRemove.put(num, num);
+        }
+
+        int temp = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (toRemove.isEmpty()) {
+                break;
+            }
+
+            int i = entry.getValue();
+
+            while (map.containsKey(i)) {
+                temp++;
+                toRemove.remove(i);
+                i++;
+            }
+
+            if (temp > ans) {
+                ans = temp;
+            }
+
+            temp = 0;
+        }
+
+
+        return ans;
+    }
+
+    /**
+     * Boyer-Moore Voting Algorithm next!
+     * Uses a candidate and counter variable
+     * Try it next!
+     */
+
+
     public int majorityElement(int[] nums) {
         if (nums.length == 1) {
             return nums[0];
