@@ -2,6 +2,29 @@ import java.util.*;
 
 public class Solution {
 
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int i = 0;
+        int j = n - 1;
+        int[] ans = new int[n];
+
+        while (i <= j) {
+            if (Math.abs(nums[i]) > Math.abs(nums[j])) {
+                ans[j - i] = (int) Math.pow(nums[i], 2);
+                i++;
+            } else {
+                ans[j - i] = (int) Math.pow(nums[j], 2);
+                j--;
+            }
+        }
+
+        return ans;
+    }
+
+    /**
+     * Rewatch Video to do it again correctly using HashSet
+     */
+
     public int longestConsecutive(int[] nums) {
         int ans = 0;
         Map<Integer, Integer> map = new HashMap<>();
