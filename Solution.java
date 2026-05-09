@@ -32,10 +32,6 @@ public class Solution {
         return ans;
     }
 
-    /**
-     * TODO Rewatch Video to do it again correctly using HashSet
-     */
-
     public int longestConsecutive(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
         int ans = 0;
@@ -60,42 +56,24 @@ public class Solution {
         return ans;
     }
 
-    /**
-     * TODO
-     * Boyer-Moore Voting Algorithm next!
-     * Uses a candidate and counter variable
-     * Try it next!
-     */
-
-
     public int majorityElement(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
-        }
-
-        int appearences = nums.length / 2;
-
-        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        int candidate = nums[0];
 
         for (int num : nums) {
-            if (map.containsKey(num)) {
-                int c = map.get(num);
-
-                if (c > appearences) {
-                    return num;
-                }
-
-                map.replace(num, ++c);
+            if (candidate == num) {
+                count++;
             } else {
-                map.put(num, 1);
+                count--;
+            }
+
+            if (count <= 0) {
+             candidate = num;
+             count++;
             }
         }
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > appearences) return entry.getKey();
-        }
-
-        return 0;
+        return candidate;
     }
 
     public List<List<String>> groupAnagrams(String[] strs) {
