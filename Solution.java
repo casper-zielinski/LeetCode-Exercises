@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Solution {
 
+
     public void reverseString(char[] s) {
 
         for (int i = 0; i < s.length / 2; i++) {
@@ -36,42 +37,31 @@ public class Solution {
      */
 
     public int longestConsecutive(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
         int ans = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        Map<Integer, Integer> toRemove = new HashMap<>();
 
         for (int num : nums) {
-            map.put(num, num);
-            toRemove.put(num, num);
+            set.add(num);
         }
 
-        int temp = 0;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (toRemove.isEmpty()) {
-                break;
+        for (int i : set) {
+            if (!set.contains(i - 1)) {
+                int length = 1;
+                int next = i + 1;
+                while (set.contains(next)) {
+                    next++;
+                    length++;
+                }
+
+                ans = Math.max(ans, length);
             }
-
-            int i = entry.getValue();
-
-            while (map.containsKey(i)) {
-                temp++;
-                toRemove.remove(i);
-                i++;
-            }
-
-            if (temp > ans) {
-                ans = temp;
-            }
-
-            temp = 0;
         }
-
 
         return ans;
     }
 
     /**
-    *  TODO
+     * TODO
      * Boyer-Moore Voting Algorithm next!
      * Uses a candidate and counter variable
      * Try it next!
