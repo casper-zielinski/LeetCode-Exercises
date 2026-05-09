@@ -2,6 +2,19 @@ import java.util.*;
 
 public class Solution {
 
+    public void reverseString(char[] s) {
+        int i = 0, j = s.length - 1;
+
+        while (i < j) {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+
+    }
+
     public int[] sortedSquares(int[] nums) {
         int n = nums.length;
         int i = 0;
@@ -22,7 +35,7 @@ public class Solution {
     }
 
     /**
-     * Rewatch Video to do it again correctly using HashSet
+     * TODO Rewatch Video to do it again correctly using HashSet
      */
 
     public int longestConsecutive(int[] nums) {
@@ -61,6 +74,7 @@ public class Solution {
     }
 
     /**
+    *  TODO
      * Boyer-Moore Voting Algorithm next!
      * Uses a candidate and counter variable
      * Try it next!
@@ -179,7 +193,7 @@ public class Solution {
         return true;
     }
 
-    private Map<Integer, Integer> dp = new HashMap<>();
+    private final Map<Integer, Integer> dp = new HashMap<>();
 
     public int climbStairs(int n) {
         if (n <= 3) {
