@@ -2,13 +2,53 @@ import java.util.*;
 
 public class Solution {
 
+    public String convert2(String s, int numRows) {
+        if (s.length() <= 2 || numRows == 1) {
+            return s;
+        }
+
+        List<StringBuilder> list = new ArrayList<>();
+
+        int i = 0;
+        boolean ascending = false;
+
+        while (i < numRows) {
+            list.add(new StringBuilder());
+            i++;
+        }
+
+        i = 0;
+        for (char c : s.toCharArray()) {
+            StringBuilder sr = list.get(i);
+            sr.append(c);
+            list.set(i, sr);
+
+            if (i >= numRows - 1 || i == 0) {
+                ascending = !ascending;
+            }
+
+            if (ascending) {
+                i++;
+            } else {
+                i--;
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder subResult : list) {
+            result.append(subResult);
+        }
+
+        return result.toString();
+    }
+
     public int[] twoSum2(int[] numbers, int target) {
         int l = 0, r = numbers.length - 1;
 
         while (l <= r) {
             int curr = numbers[l] + numbers[r];
             if (curr == target) {
-                return new int[] { l + 1, r + 1 };
+                return new int[]{l + 1, r + 1};
             } else if (curr < target) {
                 l++;
             } else {
@@ -16,7 +56,7 @@ public class Solution {
             }
         }
 
-        return new int[] { l, r };
+        return new int[]{l, r};
     }
 
 
@@ -73,7 +113,7 @@ public class Solution {
         return ans;
     }
 
-    public int majorityElement(int[] nums) { 
+    public int majorityElement(int[] nums) {
         int count = 0;
         int candidate = nums[0];
 
@@ -85,8 +125,8 @@ public class Solution {
             }
 
             if (count <= 0) {
-             candidate = num;
-             count++;
+                candidate = num;
+                count++;
             }
         }
 
