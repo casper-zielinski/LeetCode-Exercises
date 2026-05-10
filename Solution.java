@@ -2,6 +2,23 @@ import java.util.*;
 
 public class Solution {
 
+    public int[] twoSum2(int[] numbers, int target) {
+        int l = 0, r = numbers.length - 1;
+
+        while (l <= r) {
+            int curr = numbers[l] + numbers[r];
+            if (curr == target) {
+                return new int[] { l + 1, r + 1 };
+            } else if (curr < target) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+
+        return new int[] { l, r };
+    }
+
 
     public void reverseString(char[] s) {
 
@@ -56,7 +73,7 @@ public class Solution {
         return ans;
     }
 
-    public int majorityElement(int[] nums) {
+    public int majorityElement(int[] nums) { 
         int count = 0;
         int candidate = nums[0];
 
