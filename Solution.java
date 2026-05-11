@@ -2,6 +2,30 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean isPalindrome(String s) {
+        if (s.isBlank()) {
+            return true;
+        }
+
+        int i = 0;
+        int j = s.length() - 1;
+        String[] letters = s.split("");
+        while (i < j) {
+            if (letters[i].isBlank() || !letters[i].matches("[a-zA-Z]")) {
+                i++;
+            } else if (letters[j].isBlank() || !letters[j].matches("[a-zA-Z]")) {
+                j--;
+            } else if (!letters[i].equalsIgnoreCase(letters[j])) {
+                return false;
+            } else {
+                j--;
+                i++;
+            }
+        }
+
+        return true;
+    }
+
     public String convert2(String s, int numRows) {
         if (s.length() <= 2 || numRows == 1) {
             return s;
