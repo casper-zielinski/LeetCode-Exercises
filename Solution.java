@@ -2,7 +2,54 @@ import java.util.*;
 
 public class Solution {
 
-    public int maxArea(int[] height) {int max = 0;
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int sol = nums[0] + nums[1] + nums[2];
+
+        if (nums.length == 3 || sol == target) {
+            return sol;
+        }
+
+        int L, R, temp;
+
+        for (int i = 0; i < nums.length; i++) {
+            L = 0;
+            R = nums.length - 1;
+
+            while (L < R) {
+                if (i == R) {
+                    R--;
+                }
+
+                if (i == L) {
+                    L++;
+                }
+
+                if (L >= R) {
+                    break;
+                }
+
+                temp = nums[i] + nums[L] + nums[R];
+
+                if (temp == target) {
+                    return temp;
+                } else if (temp < target) {
+                    L++;
+                } else {
+                    R--;
+                }
+
+                if (Math.abs(target - temp) < Math.abs(target - sol)) {
+                    sol = temp;
+                }
+            }
+        }
+
+        return sol;
+    }
+
+    public int maxArea(int[] height) {
+        int max = 0;
         int L = 0, R = height.length - 1;
 
         while (L < R) {
