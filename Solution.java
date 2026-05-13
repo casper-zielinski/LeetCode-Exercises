@@ -2,13 +2,38 @@ import java.util.*;
 
 public class Solution {
 
+    public int maxArea(int[] height) {int max = 0;
+        int L = 0, R = height.length - 1;
+
+        while (L < R) {
+            int tempMax = Math.min(height[L], height[R]) * (R - L);
+            if (tempMax > max) {
+                max = tempMax;
+            }
+
+            if (height[L] == height[R]) {
+                if (height[L + 1] > height[R - 1]) {
+                    R--;
+                } else {
+                    L++;
+                }
+            } else if (height[L] > height[R]) {
+                R--;
+            } else {
+                L++;
+            }
+        }
+
+        return max;
+    }
+
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         int n = nums.length;
         List<List<Integer>> answer = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            if (nums[i] < 0) {
+            if (nums[i] > 0) {
                 break;
             }
 
