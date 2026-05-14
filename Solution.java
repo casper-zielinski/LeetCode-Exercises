@@ -2,6 +2,41 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean isGood(int[] nums) {
+        int n = nums.length;
+        Map<Integer, Integer> map = new HashMap<>();
+        int i = 0;
+        while (i < n - 1) {
+            if (i == n - 2) {
+                map.put(n - 1, 2);
+            } else {
+                map.put(i + 1, 1);
+            }
+
+            i++;
+        }
+
+        i = 0;
+
+        while (i < n) {
+            int curr = nums[i];
+            if (map.containsKey(curr)) {
+                int c = map.get(curr);
+                map.replace(curr, c - 1);
+            } else {
+                return false;
+            }
+
+            i++;
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() != 0) return false;
+        }
+
+        return true;
+    }
+
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         int n = nums.length;
@@ -30,17 +65,15 @@ public class Solution {
 
 
                     } else if (sum > target) {
-                        R--;
 
-                        while (nums[R] == nums[R + 1] && L < R) {
+                        do {
                             R--;
-                        }
+                        } while (nums[R] == nums[R + 1] && L < R);
                     } else {
-                        L++;
 
-                        while (nums[L] == nums[L - 1] && L < R) {
+                        do {
                             L++;
-                        }
+                        } while (nums[L] == nums[L - 1] && L < R);
                     }
                 }
             }
