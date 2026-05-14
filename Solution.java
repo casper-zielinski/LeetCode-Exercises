@@ -31,8 +31,16 @@ public class Solution {
 
                     } else if (sum > target) {
                         R--;
+
+                        while (nums[R] == nums[R + 1] && L < R) {
+                            R--;
+                        }
                     } else {
                         L++;
+
+                        while (nums[L] == nums[L - 1] && L < R) {
+                            L++;
+                        }
                     }
                 }
             }
