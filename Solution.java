@@ -2,6 +2,45 @@ import java.util.*;
 
 public class Solution {
 
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int n = nums.length;
+        Arrays.sort(nums);
+
+        for (int i = 0; i < n; i++) {
+
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            for (int a = i + 1; a < n; a++) {
+                if (a > i + 1 && nums[a] == nums[a - 1]) continue;
+                int L = a + 1, R = n - 1;
+                while (L < R) {
+                    long sum = (long) nums[i] + nums[a] + nums[L] + nums[R];
+                    if (sum == target) {
+                        ans.add(List.of(nums[i], nums[a], nums[L], nums[R]));
+                        L++;
+                        R--;
+                        while (nums[L] == nums[L - 1] && L < R) {
+                            L++;
+                        }
+
+                        while (nums[R] == nums[R + 1] && L < R) {
+                            R--;
+                        }
+
+
+                    } else if (sum > target) {
+                        R--;
+                    } else {
+                        L++;
+                    }
+                }
+            }
+        }
+
+        return ans;
+    }
+
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int sol = nums[0] + nums[1] + nums[2];
