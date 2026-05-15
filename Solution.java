@@ -2,6 +2,21 @@ import java.util.*;
 
 public class Solution {
 
+    public int findMin(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
+        } else if (nums.length == 2) {
+            return Math.min(nums[0], nums[1]);
+        } else {
+            int half = nums.length / 2;
+            return Math.min(findMin(Arrays.copyOfRange(nums, 0, half)), findMin(Arrays.copyOfRange(nums, half, nums.length)));
+        }
+    }
+
+//    public int trap(int[] height) {
+//
+//    }
+
     public boolean isGood(int[] nums) {
         int n = nums.length;
         Map<Integer, Integer> map = new HashMap<>();
