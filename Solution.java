@@ -2,20 +2,62 @@ import java.util.*;
 
 public class Solution {
 
+
     public int findMin(int[] nums) {
-        if (nums.length == 1) {
+        int n = nums.length;
+
+        if (n == 1) {
             return nums[0];
-        } else if (nums.length == 2) {
+        } else if (n == 2) {
             return Math.min(nums[0], nums[1]);
-        } else {
-            int half = nums.length / 2;
-            return Math.min(findMin(Arrays.copyOfRange(nums, 0, half)), findMin(Arrays.copyOfRange(nums, half, nums.length)));
         }
+
+        int step = n / 2;
+        int i = step;
+        int count = 0;
+
+        while (count < n) {
+            if (i == 0 && nums[i] < nums[n - 1]) {
+                return nums[i];
+            } else if (i == 0) {
+                i = n - 1;
+            }
+
+            if (i == n - 1 && nums[i] < nums[n - 2]) {
+                return nums[i];
+            }
+
+            if (nums[i] < nums[i - 1]) {
+                return nums[i];
+            } else {
+                step = Math.max(step / 2, 1);
+                i = Math.max(i - step, 0);
+            }
+
+            count++;
+        }
+
+        return nums[i];
     }
 
-//    public int trap(int[] height) {
-//
-//    }
+    public int trap(int[] height) {
+        int left = 0, right = height.length - 1;
+        int leftMax = 0, rightMax = 0;
+        int ans = 0;
+
+        while (left < right) {
+            if (height[left] < height[right]) {
+                if (height[left] >= leftMax) leftMax = height[left];
+                else ans += leftMax - height[left];
+                left++;
+            } else {
+                if (height[right] >= rightMax) rightMax = height[right];
+                else ans += rightMax - height[right];
+                right--;
+            }
+        }
+        return ans;
+    }
 
     public boolean isGood(int[] nums) {
         int n = nums.length;
