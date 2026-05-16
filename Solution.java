@@ -12,32 +12,28 @@ public class Solution {
             return Math.min(nums[0], nums[1]);
         }
 
-        int step = n / 2;
-        int i = step;
-        int count = 0;
+        int l = 0;
+        int r = n - 1;
 
-        while (count < n) {
-            if (i == 0 && nums[i] < nums[n - 1]) {
-                return nums[i];
-            } else if (i == 0) {
-                i = n - 1;
-            }
+        while (l < r) {
+            int mid = (l + r) / 2;
 
-            if (i == n - 1 && nums[i] < nums[n - 2]) {
-                return nums[i];
-            }
-
-            if (nums[i] < nums[i - 1]) {
-                return nums[i];
+            if (nums[mid] < nums[r]) {
+                r--;
+            } else if (nums[mid] > nums[r]) {
+                l++;
             } else {
-                step = Math.max(step / 2, 1);
-                i = Math.max(i - step, 0);
-            }
+                while (l < n - 1 && nums[l] == nums[l + 1]) {
+                    l++;
+                }
 
-            count++;
+                while (r > 0 && nums[r] == nums[r - 1]) {
+                    r--;
+                }
+            }
         }
 
-        return nums[i];
+        return nums[l];
     }
 
     public int trap(int[] height) {
