@@ -2,6 +2,26 @@ import java.util.*;
 
 public class Solution {
 
+
+    public boolean canReach(int[] arr, int start) {
+        Set<Integer> visited = new HashSet<>();
+        return dfs(arr, start, visited);
+    }
+
+    private boolean dfs(int[] arr, int idx, Set<Integer> visited) {
+
+        if (idx < 0 || idx >= arr.length || visited.contains(arr[idx])) {
+            return false;
+        }
+
+        if (arr[idx] == 0) return true;
+
+        visited.add(arr[idx]);
+
+        return dfs(arr, idx + arr[idx], visited) || dfs(arr, idx - arr[idx], visited);
+    }
+
+
     public int calPoints(String[] operations) {
         Deque<Integer> stack = new ArrayDeque<>();
         int ans = 0;
