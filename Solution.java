@@ -2,6 +2,38 @@ import java.util.*;
 
 public class Solution {
 
+    public int calPoints(String[] operations) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int ans = 0;
+
+        for (String operation : operations) {
+            switch (operation) {
+                case "C" -> ans -= stack.pop();
+                case "D" -> {
+                    int doubleScore = stack.peek() * 2;
+                    stack.push(doubleScore);
+                    ans += doubleScore;
+                }
+                case "+" -> {
+                    int last = stack.pop();
+                    int secondLast = stack.pop();
+                    int sum = last + secondLast;
+
+                    stack.push(secondLast);
+                    stack.push(last);
+                    stack.push(sum);
+                    ans += sum;
+                }
+                default -> {
+                    int curr = Integer.parseInt(operation);
+                    stack.push(curr);
+                    ans += curr;
+                }
+            }
+        }
+
+        return ans;
+    }
 
     public int findMin(int[] nums) {
         int n = nums.length;
