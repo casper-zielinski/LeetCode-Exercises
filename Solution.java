@@ -2,6 +2,23 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean isValid(String s) {
+        Map<String, String> map = new HashMap<>();
+        map.put(")", "(");
+        map.put("]", "[");
+        map.put("}", "{");
+        Deque<String> stack = new ArrayDeque<>();
+
+        for (String l : s.split("")) {
+            if (map.containsKey(l)) {
+                if (!stack.pop().equals(map.get(l))) return false;
+            } else {
+                stack.push(l);
+            }
+        }
+
+        return stack.isEmpty();
+    }
 
     public boolean canReach(int[] arr, int start) {
         Set<Integer> visited = new HashSet<>();
