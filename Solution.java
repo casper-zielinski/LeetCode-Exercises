@@ -3,19 +3,23 @@ import java.util.*;
 public class Solution {
 
     public int getCommon(int[] nums1, int[] nums2) {
-        HashSet<Integer> set1 = new HashSet<>();
-        HashSet<Integer> set2 = new HashSet<>();
-        int maxSize = Math.max(nums1.length, nums2.length);
+        int i = 0;
+        int j = 0;
 
-        for (int i = 0; i < maxSize; i++) {
-            if (i < nums1.length) {
-                if (set2.contains(nums1[i])) return nums1[i];
-                set1.add(nums1[i]);
-            }
-
-            if (i < nums2.length) {
-                if (set1.contains(nums2[i])) return nums2[i];
-                set2.add(nums2[i]);
+        while (i < nums1.length || j < nums2.length) {
+            if (i < nums1.length && j < nums2.length) {
+                if (nums1[i] == nums2[j]) return nums1[i];
+                if (nums1[i] > nums2[j]) {
+                    j++;
+                } else {
+                    i++;
+                }
+            } else if (i >= nums1.length) {
+                if (nums1[nums1.length - 1] == nums2[j]) return nums2[j];
+                j++;
+            } else {
+                if (nums2[nums2.length - 1] == nums1[i]) return nums1[i];
+                i++;
             }
         }
 
