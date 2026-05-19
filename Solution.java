@@ -2,6 +2,40 @@ import java.util.*;
 
 public class Solution {
 
+    public int evalRPN(String[] tokens) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int a;
+        int b;
+        for (String token : tokens) {
+            switch (token) {
+                case "+":
+                    a = stack.pop();
+                    b = stack.pop();
+                    stack.push(a + b);
+                    break;
+                case "-":
+                    a = stack.pop();
+                    b = stack.pop();
+                    stack.push(b - a);
+                    break;
+                case "*":
+                    a = stack.pop();
+                    b = stack.pop();
+                    stack.push(a * b);
+                    break;
+                case "/":
+                    a = stack.pop();
+                    b = stack.pop();
+                    stack.push(b / a);
+                    break;
+                default:
+                    stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.pop();
+    }
+
     public boolean isValid(String s) {
         Map<String, String> map = new HashMap<>();
         map.put(")", "(");
