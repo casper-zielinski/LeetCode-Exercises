@@ -2,6 +2,26 @@ import java.util.*;
 
 public class Solution {
 
+    public int getCommon(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        int maxSize = Math.max(nums1.length, nums2.length);
+
+        for (int i = 0; i < maxSize; i++) {
+            if (i < nums1.length) {
+                if (set2.contains(nums1[i])) return nums1[i];
+                set1.add(nums1[i]);
+            }
+
+            if (i < nums2.length) {
+                if (set1.contains(nums2[i])) return nums2[i];
+                set2.add(nums2[i]);
+            }
+        }
+
+        return -1;
+    }
+
     public int evalRPN(String[] tokens) {
         Deque<Integer> stack = new ArrayDeque<>();
         int a;
