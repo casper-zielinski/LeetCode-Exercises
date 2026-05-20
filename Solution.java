@@ -2,6 +2,34 @@ import java.util.*;
 
 public class Solution {
 
+    public int[] findThePrefixCommonArray(int[] A, int[] B) {
+        HashSet<Integer> setA = new HashSet<>();
+        HashSet<Integer> setB = new HashSet<>();
+        int n = A.length;
+        int count = 0;
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            setA.add(A[i]);
+            setB.add(B[i]);
+            if (setA.contains(B[i])) {
+                count++;
+                setA.remove(B[i]);
+                setB.remove(B[i]);
+            }
+
+            if (setB.contains(A[i])) {
+                count++;
+                setA.remove(A[i]);
+                setB.remove(A[i]);
+            }
+
+            ans[i] = count;
+        }
+
+        return ans;
+    }
+
     public int getCommon(int[] nums1, int[] nums2) {
         int i = 0;
         int j = 0;
