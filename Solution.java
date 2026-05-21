@@ -2,6 +2,49 @@ import java.util.*;
 
 public class Solution {
 
+    public int longestCommonPrefix(int[] arr1, int[] arr2) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int num : arr1) {
+            while (num > 0) {
+                set.add(num);
+                num /= 10;
+            }
+        }
+
+        int ans = 0;
+        for (int num : arr2) {
+            while (num > 0) {
+                if (set.contains(num)) {
+                    int len = String.valueOf(num).length();
+                    ans = Math.max(ans, len);
+                }
+                num /= 10;
+            }
+        }
+
+        return ans;
+    }
+
+    public int[] dailyTemperatures(int[] temperatures) {
+        int[] ans = new int[temperatures.length];
+        Deque<Integer> stack = new ArrayDeque<>();
+        // TODO try to solve dailyTemperatures
+        for (int temperature : temperatures) {
+            stack.push(temperature);
+        }
+
+        for (int i = ans.length - 1; i >= 0; i--) {
+            int count = 0;
+            if (i < ans.length - 1) {
+
+            }
+            ans[i] = count;
+        }
+
+        return ans;
+    }
+
     public int[] findThePrefixCommonArray(int[] A, int[] B) {
         HashSet<Integer> setA = new HashSet<>();
         HashSet<Integer> setB = new HashSet<>();
