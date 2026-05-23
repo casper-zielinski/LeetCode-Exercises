@@ -2,6 +2,20 @@ import java.util.*;
 
 public class Solution {
 
+    public boolean check(int[] nums) {
+        int drops = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                drops++;
+            }
+        }
+
+        return drops <= 1;
+    }
+
+
     public int search(int[] nums, int target) {
         int L = 0, R = nums.length - 1;
 
@@ -16,9 +30,7 @@ public class Solution {
                 } else {
                     L = mid + 1;
                 }
-            }
-
-            else {
+            } else {
                 if (target > nums[mid] && target <= nums[R]) {
                     L = mid + 1;
                 } else {
