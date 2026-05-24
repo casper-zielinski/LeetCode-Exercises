@@ -2,6 +2,36 @@ import java.util.*;
 
 public class Solution {
 
+    public int maxJumps(int[] arr, int d) {
+        int[] memo = new int[arr.length];
+        int ans = 1;
+
+        for (int i = 0; i < arr.length; i++) {
+            ans = Math.max(ans, dfs(arr, d, i, memo));
+        }
+
+        return ans;
+    }
+
+    private int dfs(int[] arr, int d, int i, int[] memo) {
+        if (memo[i] != 0) return memo[i];
+
+        int best = 1;
+
+        for (int x = 1; x <= d; x++) {
+            if (i + x >= arr.length || arr[i + x] >= arr[i]) break;
+            best = Math.max(best, 1 + dfs(arr, d, i + x, memo));
+        }
+
+        for (int x = 1; x <= d; x++) {
+            if (i - x < 0 || arr[i - x] >= arr[i]) break;
+            best = Math.max(best, 1 + dfs(arr, d, i - x, memo));
+        }
+
+        memo[i] = best;
+        return best;
+    }
+
     public boolean check(int[] nums) {
         int drops = 0;
         int n = nums.length;
