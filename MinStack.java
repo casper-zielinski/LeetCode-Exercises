@@ -1,29 +1,33 @@
 import java.util.*;
 
 public class MinStack {
-    private List<Integer> stack;
-    private PriorityQueue<Integer> heap;
+    private Deque<Integer> stack;
+    private Deque<Integer> minStack;
 
     public MinStack() {
-        stack = new ArrayList<>();
-        heap = new PriorityQueue<>();
+        stack = new ArrayDeque<>();
+        minStack = new ArrayDeque<>();
     }
 
     public void push(int val) {
-        stack.add(val);
-        heap.add(val);
+        stack.push(val);
+        if (minStack.isEmpty() || minStack.peek() <= val) {
+            minStack.push(val);
+        } else {
+            minStack.push(minStack.peek());
+        }
     }
 
     public void pop() {
-        int removed = stack.removeLast();
-        heap.remove(removed);
+        stack.pop();
+        minStack.pop();
     }
 
     public int top() {
-        return stack.getLast();
+        return stack.peek();
     }
 
     public int getMin() {
-        return heap.peek();
+        return minStack.peek();
     }
 }
