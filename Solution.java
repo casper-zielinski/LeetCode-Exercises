@@ -2,6 +2,36 @@ import java.util.*;
 
 public class Solution {
 
+    public int largestRectangleArea(int[] heights) {
+        int n = heights.length;
+        Deque<int[]> stack = new ArrayDeque<>();
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            int height = heights[i];
+            int start = i;
+            while (!stack.isEmpty() && height < stack.peek()[0]) {
+                int[] popped = stack.pop();
+                int h = popped[0];
+                int j = popped[1];
+                int w = i - j;
+                ans = Math.max(ans, h * w);
+                start = j;
+            }
+            stack.push(new int[]{height, start});
+        }
+
+        while (!stack.isEmpty()) {
+            int[] popped = stack.pop();
+            int h = popped[0];
+            int j = popped[1];
+            int w = n - j;
+            ans = Math.max(ans, h * w);
+        }
+
+        return ans;
+    }
+
     public boolean canReach(String s, int minJump, int maxJump) {
         int n = s.length();
         if (s.charAt(n - 1) == '1')
