@@ -5,7 +5,6 @@ public class Solution {
 
     public ListNode deleteDuplicates(ListNode head) {
         ListNode curr = head;
-        ListNode res = curr;
 
         while (curr != null) {
             if (curr.next != null && curr.val == curr.next.val) {
@@ -15,7 +14,7 @@ public class Solution {
             }
         }
 
-        return res;
+        return head;
     }
 
     public int largestRectangleArea(int[] heights) {
