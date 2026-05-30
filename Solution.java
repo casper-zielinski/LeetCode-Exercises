@@ -2,6 +2,22 @@ import java.util.*;
 
 public class Solution {
 
+
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode curr = head;
+        ListNode res = curr;
+
+        while (curr != null) {
+            if (curr.next != null && curr.val == curr.next.val) {
+                    curr.next = curr.next.next;
+            } else {
+                curr = curr.next;
+            }
+        }
+
+        return res;
+    }
+
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
         Deque<int[]> stack = new ArrayDeque<>();
