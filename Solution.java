@@ -2,6 +2,25 @@ import java.util.*;
 
 public class Solution {
 
+    public ListNode reverseList(ListNode head) {
+        ListNode curr = head;
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        while (curr != null) {
+            stack.push(curr.val);
+            curr = curr.next;
+        }
+
+        curr = head;
+
+        while (!stack.isEmpty()) {
+            curr.val = stack.pop();
+            curr = curr.next;
+        }
+
+        return head;
+    }
+
     public ListNode insertGreatestCommonDivisors(ListNode head) {
         ListNode curr = head;
 
