@@ -3,22 +3,17 @@ import java.util.*;
 public class Solution {
 
     public ListNode reverseList(ListNode head) {
-        ListNode curr = head;
-        Deque<Integer> stack = new ArrayDeque<>();
+        ListNode prev = null;
+        ListNode cur = head;
 
-        while (curr != null) {
-            stack.push(curr.val);
-            curr = curr.next;
+        while (cur != null) {
+            ListNode temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
         }
 
-        curr = head;
-
-        while (!stack.isEmpty()) {
-            curr.val = stack.pop();
-            curr = curr.next;
-        }
-
-        return head;
+        return prev;
     }
 
     public ListNode insertGreatestCommonDivisors(ListNode head) {
