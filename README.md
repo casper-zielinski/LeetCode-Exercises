@@ -8,4 +8,4 @@ My LeetCode Account: [https://leetcode.com/u/winst_churchdrip/](https://leetcode
 
 ### Badges
 
-<img src="./LeetCode_Badge_50Days.png" alt="50 Days Badge 2026" width="300" height="300">
+![50 Days Badge 2026](LeetCode_Badge_50Days.png)
