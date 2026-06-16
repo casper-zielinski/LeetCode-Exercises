@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Solution {
 
+
+
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if (list1 == null && list2 != null) {
             return list2;
