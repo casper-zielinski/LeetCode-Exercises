@@ -2,6 +2,28 @@ import java.util.*;
 
 public class Solution {
 
+    public Node copyRandomList(Node head) {
+        if (head == null) return null;
+
+        Map<Node, Node> oldToNew = new HashMap<>();
+        Node curr = head;
+
+        while (curr != null) {
+            oldToNew.put(curr, new Node(curr.val));
+            curr = curr.next;
+        }
+
+        curr = head;
+        while (curr != null) {
+            Node newNode = oldToNew.get(curr);
+            newNode.next = oldToNew.get(curr.next);
+            newNode.random = oldToNew.get(curr.random);
+            curr = curr.next;
+        }
+
+        return oldToNew.get(head);
+    }
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
